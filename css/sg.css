@@ -1,0 +1,41 @@
+body{margin: 0px; padding: 0px; font-family:Arial, Helvetica, sans-serif; color:#000;-webkit-font-smoothing: antialiased;}
+.live_sgp{ width:490px; margin: 0px auto;}
+.live_4d {border-radius: 4px; width: 243px;}
+.resultTable{font-family: Arial;color: rgb(117, 117, 117); font-size: 12px;}
+.resultTable2{width: 100%; margin: 0px;}
+.resultm4dlable{border: 0px;font-weight: 700;vertical-align: middle;outline: none;background:#00418b;color:white;text-shadow: 1px 1px 1px #000;}
+.resultm4dlable img{margin: 2px 4px -1px;}
+.resultm4dlable span{ letter-spacing:1px}
+.resultdrawdate{border: 0px;font-size: 11px;vertical-align: middle;outline: none;height: 10px;text-align: center;}
+.live{background-image:url(loading.gif) !important;background-repeat:no-repeat !important;background-position: 50% 50% !important;}
+.resultprizelable{border: 0px; font-size:12px; font-weight:700; vertical-align: middle; outline: none; text-align: center;width: 100px; background:#F18E02;}
+.result_prize{border: 0px; font-size: 12px; font-weight: 700; vertical-align: middle; outline: none; text-align: center;  width: 100px; background:#ccc;}
+.Consolation_Prize{border: 0px;font-size: 12px;font-weight: 700;vertical-align: middle;outline: none;text-align: center;width: 100px;background:#E8B477;}
+.resulttop{border: 1px solid rgb(204, 204, 204); font-size: 15px; font-weight: 700;text-align: center;height:19px;letter-spacing: 3px;color: #001C3B;}
+.resulttop1{border: 1px solid rgb(204, 204, 204); font-size: 15px; font-weight: 700;text-align: center;height:19px;letter-spacing: 3px;color: #790000;}
+.resultbottom{border: 1px solid rgb(204, 204, 204);font-size:12px;outline: none;text-align: center;width: 56px;font-weight:bold; height:16px}
+.resultTable2_toto{width: 100%; margin: 0px;height: 10px;}
+.toto{ background-color:#E1F4FF; border-radius:4px;width: 230px;height: 243px;}
+.resultm4dlable_toto {border: 0px;font-weight: 700;vertical-align: middle;outline: none;background: #CA0000;color: white;text-shadow: 1px 1px 1px #000;}
+.resultm4dlable_toto img{margin: 2px 4px -1px;}
+.resultdrawdate_toto{border: 0px;font-size: 11px;vertical-align: middle;outline: none;height: 10px;text-align: center;}
+.live_toto{background-image:url(load.gif) !important;background-repeat:no-repeat !important;background-position: 50% 50% !important;}
+.result_toto{border: 1px solid rgb(204, 204, 204);font-size: 15px;text-align: center;font-weight:bold;height:25px;width:34px;border-radius: 5px;
+    background-color: #00418B;color: white;}
+.resulttop_toto {background:none;border:none;font-size:18px;text-align: center;font-weight: bold;width: 50px;line-height: 23px;letter-spacing: 5px;
+    color: white;}
+.result_49 {background-color:#CA0000;font-size:14px;height: 27px;font-weight: 700;}
+.add_toto {
+    text-align: center;
+    font-weight: bold;
+    height: 25px;
+    border-radius: 50px;
+    border: none;
+    background-color: #383838;
+    color: #fff;
+    font-size: 18px;
+}
+.jadwal_toto {font-size: 11px;text-align: center;line-height: 23px;}
+.copyright{font-size:10px;}
+.winning, .additional {border:none; text-align:center; color:#F18E02; font-size:12px}
+	

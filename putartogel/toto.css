@@ -1,0 +1,28 @@
+/* table{
+	background-color: #E1F4FF;
+    border-radius: 5px;
+} */
+table#fourd, table#toto {
+	margin : 20px auto;
+}
+.rst_toto{border: 1px solid rgb(204, 204, 204);font-size: 15px;text-align: center;font-weight:bold;height:25px;width:34px;border-radius: 5px;
+    background-color: #00418B;color: white;}
+.adm_toto {
+    text-align: center;
+    font-weight: bold;
+    height: 25px;
+    border-radius: 50px;
+    border: none;
+    /* background-color: #383838;
+    color: #fff; */
+    font-size: 18px;
+}
+.head_toto{border: 1px solid rgb(204, 204, 204);font-size: 15px;text-align: center;font-weight:bold;height:25px;width:234px;border-radius: 5px;
+    background-color: #CA0000;color: white;}
+.head_4d{border: 1px solid #00418b;font-size: 15px;text-align: center;font-weight:bold;height:25px;width:234px;border-radius: 5px;
+    background-color: #CA0000;color: white;}
+.result_starter{border: 1px solid rgb(204, 204, 204); font-size:12px; outline: none; text-align: center; width: 56px; font-weight:bold; height:16px; background-color: #F18E02;}
+.result_consolation{border: 1px solid rgb(204, 204, 204); font-size:12px; outline: none; text-align: center; width: 56px; font-weight:bold; height:16px; background-color: #E8B477;}
+.medium{
+	width:175px;
+}

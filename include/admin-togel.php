@@ -11,6 +11,7 @@
 			<th>Number</th>
 			<th>DewaHoki</th>
 			<th>JayaBola</th>
+			<th>Win</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,7 +31,11 @@ function get_togel(current_page){
 	$.post(window.location.origin+"/bet.php", {page: "get_betting", ajax: "", search_num : $("#search_button").val(), current_page : current_page, periode : $("#periode").attr("date")}, function( data ) {
 		var togel_list = "";
 		$.each(data, function(index, value) {
-			togel_list += "<tr><td>"+value.bet_id+"</td><td>"+value.time+"</td><td>"+value.username+"</td><td class='tebakan'>"+value.number+"</td><td>"+value.dewahoki_username+"</td><td>"+value.jayabola_username+"</td></tr>";			
+			var set_win = "";
+			if(!value.togel_win_id) {
+				set_win = "<a onclick='set_toto_winner("+value.bet_id+")'>Set Win</a>";
+			}
+			togel_list += "<tr betid='"+value.bet_id+"'><td>"+value.bet_id+"</td><td>"+value.time+"</td><td>"+value.username+"</td><td class='tebakan'>"+value.number+"</td><td>"+value.dewahoki_username+"</td><td>"+value.jayabola_username+"</td><td>"+set_win+"</td></tr>";			
 		});
 		$("#adm-togel > tbody").html(togel_list);
 	}, "json")
@@ -48,6 +53,17 @@ function get_togel(current_page){
 			}, "html")
 		}, "json")
 	});
+}
+function set_toto_winner(bet_id){
+	var r = confirm("Set no "+bet_id+" sebagai pemenang ?");
+	if(r){
+		$.post(window.location.origin+"/bet.php" , {page: "set_toto_winner", bet_id : bet_id}, function(data) {
+			alert(data);
+			if(data == "Pemenang berhasil disimpan."){
+				$("tr[betid='"+bet_id+"'] td:last").empty();
+			}
+		});
+	}
 }
 </script>
 <style>

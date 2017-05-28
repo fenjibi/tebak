@@ -12,7 +12,7 @@
 include $_SERVER['DOCUMENT_ROOT']."/bet.php";
 $winner_list = $bet->toto_winner_list();
 foreach ($winner_list as $wlist){
-	echo "<tr towinid='".$wlist['togel_win_id']."'><td>".$wlist['periode']."</td><td>".$wlist['username']."</td><td class='tebakan'>".$wlist['number']."</td></tr>";
+	echo "<tr towinid='".$wlist['togel_win_id']."'><td>".$wlist['periode']."</td><td>".$common->hide_username($wlist['username'])."</td><td class='tebakan'>".$wlist['number']."</td></tr>";
 }
 ?>
 		</tbody>

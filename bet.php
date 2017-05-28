@@ -14,9 +14,9 @@ class bet{
 			$start_row = ($_POST['current_page'] - 1)*$row_per_page;
 			$limit = " limit ".$start_row.", ".$row_per_page;
 		}
-		$sql = "select bet_id, time, number, periode, u.user_id, username, dewahoki_username, jayabola_username
-			from bet b, user u, user_detail ud
-			where u.user_id=b.user_id 
+		$sql = "select b.bet_id, b.time, number, periode, u.user_id, username, dewahoki_username, jayabola_username, togel_win_id
+			from user u, user_detail ud, bet b left join togel_win tw on tw.bet_id=b.bet_id 
+            where u.user_id=b.user_id 
 				and u.user_id=ud.user_id".$periode_sql.$search_sql.$limit;
 		$get_bet = $this->mysqli->query($sql);
 		if($get_bet->num_rows > 0){	
@@ -83,6 +83,35 @@ class bet{
 		}
 		$this->mysqli->close();
 	}
+	function set_toto_winner($bet_id){
+		$sql = "INSERT INTO togel_win (bet_id) VALUES (".$bet_id.")";
+		$towin = $this->mysqli->query($sql);
+		if($towin){
+			echo "Pemenang berhasil disimpan.";
+		}
+		else{
+			echo "Gagal. Ada kesalahan.";
+		}
+		$this->mysqli->close();
+	}
+	function toto_winner_list(){
+		$wlistsql = "select b.bet_id, b.time, number, periode, u.user_id, username, dewahoki_username, jayabola_username, togel_win_id
+			from user u, user_detail ud, bet b, togel_win tw 
+            where u.user_id=b.user_id 
+				and u.user_id=ud.user_id
+				and tw.bet_id=b.bet_id";
+		$get_toto_winner = $this->mysqli->query($wlistsql);
+		if($get_toto_winner->num_rows > 0){	
+			while($row = $get_toto_winner->fetch_assoc()){
+				$winlist[] = $row;
+			}
+			return $winlist;
+		}
+		else{
+			return '';
+		}
+		$this->mysqli->close();
+	}
 	function get_periode(){
 		if(date('Hi') >= "1600"){
 			$periode = date("Y-m-d", strtotime("+1 day"));
@@ -103,6 +132,9 @@ switch($_POST['page']){
 		break;
 	case betting_toto:
 		$bet->betting_toto($_POST['uid'], $_POST['nobet']);
+		break;
+	case set_toto_winner:
+		$bet->set_toto_winner($_POST['bet_id']);
 		break;
 }
 ?>

@@ -1,0 +1,4 @@
+<h3>PEMENANG 4D</h3><div id="winner" align="center">	<table id="towinner" cellpadding="0" cellspacing="0">		<tbody><?php include_once $_SERVER['DOCUMENT_ROOT']."/bet.php";$winner_list = $bet->toto_winner_list();for($a = 0; $a < 5; $a++){	echo "<tr>";	for($b = $a; $b < 10; $b += 5){		echo "<td>".$common->hide_username($winner_list[$b]['username'])."</td>";	}	echo "</tr>";}?>		</tbody>
+	</table>
+	<span style="float: right; padding: 0 12px 0px 0;"><a href="<?php echo $home_url; ?>toto-win-list">View All</span></a>
+</div><style>#winner {	height: 150px;}table#towinner {	width: 250px;}table#towinner > tbody > tr > td {	width: 50%;}</style>

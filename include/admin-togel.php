@@ -1,4 +1,4 @@
-<?php include $_SERVER['DOCUMENT_ROOT']."/bet.php"; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT']."/bet.php"; ?>
 <input type="text" id="periode" placeholder="Periode" value="<?php echo $bet->get_periode(); ?>" date="<?php echo $bet->get_periode(); ?>" />
 <input type="text" id="search_num" class="number" placeholder="Nomor" maxlength="4"/>
 <button type="button" id="search_button" value="">CARI</button>

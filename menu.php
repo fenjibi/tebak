@@ -48,7 +48,9 @@ foreach ($page as $plist) {
     <nav class="menu">
         <ul class="clearfix">
             <li><a href="<?php echo $home_url; ?>">Home</a></li>
-            <li>
+            <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>
+            <li><a href="<?php echo $home_url; ?>about">About</a></li>
+			<!-- li>
                 <a href="#">Togel <span class="arrow">&#9660;</span></a>
  
                 <ul class="sub-menu">
@@ -57,11 +59,9 @@ foreach ($page as $plist) {
 					<li><a href="/togel/buku-mimpi.php">Buku Mimpi</a></li>
 				</ul>
             </li>
-            <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>
-            <li><a href="#">Hadiah</a></li>
-            <li><a href="<?php echo $home_url; ?>about">About</a></li>
+			<li><a href="#">Hadiah</a></li>
 			<li><a href="#">Nonton Bareng</a></li>
-			<li><a href="#">FAQ</a></li>
+			<li><a href="#">FAQ</a></li -->
 <?php
 /* if(!isset($_COOKIE['uid'])){
 	echo "<li><a href='/register'><!-- a onclick='window.open(window.location.origin+\"/daftar\", \"\", \"width=800,height=600\");' -->DAFTAR</a></li>";

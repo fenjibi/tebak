@@ -65,13 +65,13 @@ class bet{
 			return;
 		}
 		$periode = $this->get_periode();
-		/* $periode_sql = "select * from bet 
+		$periode_sql = "select * from bet 
 			where user_id=".$uid." and periode='".$periode."'";
 		$periode_chk = $this->mysqli->query($periode_sql);
 		if($periode_chk->num_rows > 0){
 			echo "Tebakan Anda untuk periode ini sudah ada.<br />Setiap user hanya boleh submit tebakan 1 x per periode.";
 			return;
-		} */
+		}
 		$sql = "INSERT INTO bet (user_id, number, periode) 
 			VALUES (".$uid.", '".$nobet."', '".$periode."')";
 		$bet = $this->mysqli->query($sql);

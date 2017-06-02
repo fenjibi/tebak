@@ -11,7 +11,7 @@ else{
 	<span class="free">Silahkan masukkan jawaban 4D disini</span>
 	    <form style="margin: 14px 0 0 0;">
 		<div class="chexbox" style="font-size: 13px;color: #93a3aa;margin-left: 10px;margin-top: 10px;width: 321px;">
-		    <input name="chek" id="chek" type="checkbox" /> Saya sudah mengerti <a href="/legal.php">Syarat & Kondisi</a> lomba ini</div>
+		    <input name="chek" id="chek" type="checkbox" /> Saya sudah mengerti <a href="<?php echo $home_url; ?>syarat-kondisi">Syarat & Kondisi</a> lomba ini</div>
 		    <br/>
 			<input type="text" placeholder="AS" maxlength="1" class="tebak_4d number" id="as">
 			<input type="text" placeholder="KOP" maxlength="1" class="tebak_4d number" id="kop">

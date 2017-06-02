@@ -68,6 +68,30 @@ class common {
 			return $pagination;
 		}
 	}
+	function upload($upload_name, $upload_dir, $extension=array(), $max_size=2097152){
+		$file_name = $_FILES[$upload_name]['name'];
+		$file_size = $_FILES[$upload_name]['size'];
+		$file_tmp = $_FILES[$upload_name]['tmp_name'];
+		$file_type = $_FILES[$upload_name]['type'];
+		if (!file_exists($upload_dir)) {
+			mkdir($upload_dir, 0777, true);
+		}
+		if($file_size > $max_size){
+			return "ukuran file tidak boleh lebih dari 2 MB";
+		}
+		$file_extension = pathinfo($upload_dir.$file_name, PATHINFO_EXTENSION);
+		if(!empty($extension)){
+			if(in_array($file_extension, $extension) === false){
+				return "File extension hanya boleh ".implode(", ",$extension).".";
+			}
+		}
+		if(move_uploaded_file($file_tmp, $upload_dir.$file_name)){
+			return "uploaded";
+		}
+		else{
+			return "failed";
+		}
+	}
 	function generate_random_string(){
 		$string1 = "abcdefghijklmnopqrstuvwxyz";
 		$string2 = "1234567890";

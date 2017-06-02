@@ -47,7 +47,7 @@ foreach ($page as $plist) {
 <div class="menu-wrap">
     <nav class="menu">
         <ul class="clearfix">
-            <li><a href="<?=$home_url?>">Home</a></li>
+            <li><a href="<?php echo $home_url; ?>">Home</a></li>
             <li>
                 <a href="#">Togel <span class="arrow">&#9660;</span></a>
  
@@ -57,9 +57,9 @@ foreach ($page as $plist) {
 					<li><a href="/togel/buku-mimpi.php">Buku Mimpi</a></li>
 				</ul>
             </li>
-            <li><a href="#">Lomba 4D</a></li>
+            <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>
             <li><a href="#">Hadiah</a></li>
-            <li><a href="/about.php">About</a></li>
+            <li><a href="<?php echo $home_url; ?>about">About</a></li>
 			<li><a href="#">Nonton Bareng</a></li>
 			<li><a href="#">FAQ</a></li>
 <?php

@@ -33,7 +33,7 @@ function get_togel(current_page){
 		$.each(data, function(index, value) {
 			var set_win = "";
 			if(!value.togel_win_id) {
-				set_win = "<a onclick='set_toto_winner("+value.bet_id+")'>Set Win</a>";
+				set_win = "<a onclick='set_toto_winner("+value.bet_id+")'><img src='"+window.location.origin+"/images/champion-crown.png' alt='set win' width='28' style='cursor: pointer;' /></a>";
 			}
 			togel_list += "<tr betid='"+value.bet_id+"'><td>"+value.bet_id+"</td><td>"+value.time+"</td><td>"+value.username+"</td><td class='tebakan'>"+value.number+"</td><td>"+value.dewahoki_username+"</td><td>"+value.jayabola_username+"</td><td>"+set_win+"</td></tr>";			
 		});

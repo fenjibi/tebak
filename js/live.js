@@ -2,7 +2,7 @@ function populate(){
 	var toto = [];
 	var rstpos = 0;
 	var addition = 0;
-	$.ajax("data/macau45toto_4d.php").done(function(data) {
+	$.ajax(window.location.origin+"/data/macau45toto_4d.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			if(value.trim() == ''){
@@ -11,7 +11,7 @@ function populate(){
 			$("#macau45toto #data-"+key).html(value);
 		});
 	})
-	$.ajax("data/macau45toto_toto.php").done(function(data) {
+	$.ajax(window.location.origin+"/data/macau45toto_toto.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			if(value.trim() == ''){
@@ -31,13 +31,13 @@ function populate(){
 			get_result(toto, rstpos);
 		}
 	})
-	$.ajax("data/sgp_4d.php").done(function(data) {
+	$.ajax(window.location.origin+"/data/sgp_4d.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			$("#sgp #data-"+key).text(value);
 		});
 	})
-	$.ajax("data/sgp_toto.php").done(function(data) {
+	$.ajax(window.location.origin+"/data/sgp_toto.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			$("#sgp #toto-"+key).text(value);

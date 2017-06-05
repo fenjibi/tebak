@@ -119,7 +119,7 @@ class user{
 				$to = $u['email'];
 				$headers = "MIME-Version: 1.0\r\n";
 				// $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-				$headers .= 'From: LombaTogel <system@lombatogel.net>\r\n';
+				$headers .= 'From: INDOFREEBET <system@indofreebet.net>\r\n';
 				$subject = 'Reset Password';
 				$d = base64_encode($u['user_id']."|".date('Ymd')."|".$random_string);
 				$message = 'Username : '.$_POST['uname']."\r\n".'Password setelah reset : '.$random_string."\r\n".

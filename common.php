@@ -22,7 +22,7 @@ class common {
 			return substr($str, 0, 5).'****';
 		}
 	}
-	function pagination($row_per_page, $current_page, $total_rows){
+	function pagination($row_per_page, $current_page, $total_rows, $func){
 		$total_pages = ceil($total_rows/$row_per_page);
 		$pagination = '';
 		if($total_pages > 1 && $current_page <= $total_pages){
@@ -33,10 +33,10 @@ class common {
 			$first_link     = true; //boolean var to decide our first link
 			
 			if($current_page > 1){
-				$pagination .= '<li class="first"><a onclick="get_togel(1)" title="First">&laquo;</a></li>'; //first link
+				$pagination .= '<li class="first"><a onclick="'.$func.'(1)" title="First">&laquo;</a></li>'; //first link
 				for($i = ($current_page-2); $i < $current_page; $i++){ //Create left-hand side links
 					if($i > 0){
-						$pagination .= '<li><a onclick="get_togel('.$i.')" title="Page'.$i.'">'.$i.'</a></li>';
+						$pagination .= '<li><a onclick="'.$func.'('.$i.')" title="Page'.$i.'">'.$i.'</a></li>';
 					}
 				}
 				$first_link = false; //set first link to false
@@ -52,11 +52,11 @@ class common {
 					
 			for($i = $current_page+1; $i < $right_links ; $i++){ //create right-hand side links
 				if($i<=$total_pages){
-					$pagination .= '<li><a onclick="get_togel('.$i.')" title="Page '.$i.'">'.$i.'</a></li>';
+					$pagination .= '<li><a onclick="'.$func.'('.$i.')" title="Page '.$i.'">'.$i.'</a></li>';
 				}
 			}
 			if($current_page < $total_pages){ 
-					$pagination .= '<li class="last"><a onclick="get_togel('.$total_pages.')" title="Last">&raquo;</a></li>'; //last link
+					$pagination .= '<li class="last"><a onclick="'.$func.'('.$total_pages.')" title="Last">&raquo;</a></li>'; //last link
 			}
 			
 			$pagination .= '</ul>'; 
@@ -104,7 +104,7 @@ class common {
 $common = new common();
 switch($_POST['page']){
 	case pagination:
-		$common->pagination(15, $_POST['current_page'], $_POST['total_rows']);
+		$common->pagination($_POST['row_per_page'], $_POST['current_page'], $_POST['total_rows'], $_POST['func']);
 		break;
 }
 ?>

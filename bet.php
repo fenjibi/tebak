@@ -7,7 +7,10 @@ class bet{
 	function get_betting() {
 		$periode_sql = " and periode = '".(isset($_POST['periode']) ? $_POST['periode'] : $this->get_periode())."'";
 		if(trim($_POST['search_num']) != ''){
-			$search_sql = " and b.number LIKE '%".$_POST['search_num']."%'";
+			$search_sql = " and b.number like '%".$_POST['search_num']."%'";
+		}
+		if(trim($_POST['search_name']) != ''){
+			$name_sql = " and concat(username, dewahoki_username, jayabola_username) like '%".$_POST['search_name']."%'";
 		}
 		if(isset($_POST['current_page'])){
 			$row_per_page = 15;
@@ -17,7 +20,7 @@ class bet{
 		$sql = "select b.bet_id, b.time, number, periode, u.user_id, username, dewahoki_username, jayabola_username, togel_win_id
 			from user u, user_detail ud, bet b left join togel_win tw on tw.bet_id=b.bet_id 
             where u.user_id=b.user_id 
-				and u.user_id=ud.user_id".$periode_sql.$search_sql.$limit;
+				and u.user_id=ud.user_id".$periode_sql.$search_sql.$name_sql.$limit;
 		$get_bet = $this->mysqli->query($sql);
 		if($get_bet->num_rows > 0){	
 			while($row = $get_bet->fetch_assoc()){
@@ -45,9 +48,12 @@ class bet{
 		if(trim($_POST['search_num']) != ''){
 			$search_sql = " and b.number LIKE '%".$_POST['search_num']."%'";
 		}
+		if(trim($_POST['search_name']) != ''){
+			$name_sql = " and concat(username, dewahoki_username, jayabola_username) like '%".$_POST['search_name']."%'";
+		}
 		$csql = "select count(*) total_rows from bet b, user u, user_detail ud
 			where u.user_id=b.user_id 
-				and u.user_id=ud.user_id".$periode_sql.$search_sql;
+				and u.user_id=ud.user_id".$periode_sql.$search_sql.$name_sql;
 		$getc = $this->mysqli->query($csql);
 		if($getc->num_rows > 0){
 			$count = $getc->fetch_assoc();
@@ -68,8 +74,8 @@ class bet{
 		$periode_sql = "select * from bet 
 			where user_id=".$uid." and periode='".$periode."'";
 		$periode_chk = $this->mysqli->query($periode_sql);
-		if($periode_chk->num_rows > 0){
-			echo "Tebakan Anda untuk periode ini sudah ada.<br />Setiap user hanya boleh submit tebakan 1 x per periode.";
+		if($periode_chk->num_rows > 4){
+			echo "Tebakan Anda untuk periode ini sudah ada.<br />Setiap user hanya boleh submit tebakan 5 x per periode.";
 			return;
 		}
 		$sql = "INSERT INTO bet (user_id, number, periode) 

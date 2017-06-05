@@ -317,6 +317,7 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	padding: 11px 13px 0;
 	height: 32px;
 	margin: 0 0 0px;
+	text-transform: uppercase;
 }
 #side_left ul, #side_right ul {
 	float: left;
@@ -344,11 +345,12 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 }
 #live-toto td {
     border: solid 1px #6f7474;
-    color: #fff;
-    font-size: 15px;
+    color: #aed3fd;
+    font-size: 17px;
     background-color: #232c2f;
 	width: 41px;
     text-align: center;
+	height: 29px;
 }
 
 .live_sgp{ width:100%; }
@@ -358,7 +360,12 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	color: rgb(117, 117, 117);
 	font-size: 12px;
 }
-.resultTable2 { width: 100%; margin: 0px; }
+.resultTable2 {
+    width: 100%;
+    margin: 0px;
+    height: 25px;
+    color: #fff;
+}
 .resultm4dlable {
 	border: 0px;
 	font-weight: 700;
@@ -386,6 +393,8 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	text-align: center;
 	width: 100px;
 	background:#4f636c;
+	height: 21px;
+	color: #fff;
 }
 .result_prize {
 	border: 0px;
@@ -406,6 +415,8 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	text-align: center;
 	width: 100px;
 	background:#4f636c;
+	height: 21px;
+	color: #fff;
 }
 .resulttop {
 	border: 1px solid rgb(124, 145, 154);
@@ -423,21 +434,21 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	text-align: center;
 	height:19px;
 	letter-spacing: 3px;
-	color: #ff0000;
+	color: #c6ff00;
 }
 .resultbottom {
-	letter-spacing: 1px;
-	border: 1px solid rgb(124, 145, 154);
-	font-size:12px;
-	outline: none;
-	text-align: center;
-	width: 56px;
-	height:16px;
+    letter-spacing: 1px;
+    border: 1px solid rgb(124, 145, 154);
+    font-size: 13px;
+    outline: none;
+    text-align: center;
+    width: 56px;
+    height: 21px;
+    color: #c0c0c0;
 }
 .resultTable2_toto {
 	width: 100%;
-	margin: 0px;
-	height: 10px;
+	color: #fff;	
 }
 .toto {
 	background-color:#E1F4FF;
@@ -487,13 +498,14 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	width: 50px;
 	line-height: 23px;
 	letter-spacing: 5px;
-    color: white;
+    color: #c6ff00;
 }
 .result_49 {
 	background-color:#4f636c;
 	font-size:14px;
 	height: 27px;
 	font-weight: 700;
+	color: #fff;
 }
 .add_toto {
     text-align: center;
@@ -503,6 +515,7 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
     background-color: #232c2f;
     color: #fff;
     font-size: 18px;
+	width: 5px;
 }
 .jadwal_toto {
 	margin: 6px 0 0 0px;
@@ -513,6 +526,9 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	text-align:center;
 	color:#838383;
 	font-size:12px;
+	font-weight: normal;
+	width: 263px;
+	line-height: 25px;
 }
 #hasil_togel { background-color:#000; }
 #hasil_togel th {

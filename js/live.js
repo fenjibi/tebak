@@ -34,13 +34,19 @@ function populate(){
 	$.ajax(window.location.origin+"/data/sgp_4d.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
-			$("#sgp #data-"+key).text(value);
+			if (!value){
+				value = '<img src="'+window.location.origin+'/images/loading.gif" width="10" height="10" alt"" />';
+			}
+			$("#sgp #data-"+key).html(value);
 		});
 	})
 	$.ajax(window.location.origin+"/data/sgp_toto.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
-			$("#sgp #toto-"+key).text(value);
+			if (!value){
+				value = '<img src="'+window.location.origin+'/images/loading.gif" width="10" height="10" alt"" />';
+			}
+			$("#sgp #toto-"+key).html(value);
 		});
 	})
 }

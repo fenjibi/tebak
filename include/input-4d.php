@@ -46,6 +46,9 @@ function check_tebak(){
 		var nobet = $("#as").val()+$("#kop").val()+$("#kep").val()+$("#ek").val();
 		$.post(window.location.origin+"/bet.php", {page: "betting_toto", nobet: nobet <?php echo (isset($_COOKIE['uid']) ? ', uid: '.$_COOKIE['uid'] : ''); ?>}, function( data ) {
 			$("#response").html(data).css("opacity", "1").animate({opacity: 0}, 8000);
+			if(data=="Tebakan disimpan. Semoga beruntung."){
+				setTimeout( function(){location.reload();}, 6000);
+			}
 		});
 	}
 }

@@ -1,5 +1,6 @@
 <?php
-$home_url = "http://".$_SERVER['SERVER_NAME']."/";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https:" : "http:";
+$home_url = $protocol."//".$_SERVER['SERVER_NAME']."/";
 $home_title = "123";
 $home_description = "abc";
 $home_keywords = "456" ;

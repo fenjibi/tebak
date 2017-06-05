@@ -24,14 +24,14 @@ class togel {
 		fclose($macau45toto4d);
 		
 		$live_sgp4d = 'Singapore 4D';
-		$src_sgp4d = file_get_html('http://lombatogel.net/data/sgp_4d-json.php')->plaintext;
+		$src_sgp4d = file_get_html($this->home_url.'data/sgp_4d-json.php')->plaintext;
 		$live_sgp4d .= strstr(preg_replace('/[\[\]\"]/', '', $src_sgp4d), ',');
 		$sgp4d = fopen($data_path.'sgp_4d.php', "w");
 		fwrite($sgp4d, $live_sgp4d);
 		fclose($sgp4d);
 		
 		$live_sgptoto = 'Singapore TOTO';
-		$src_sgptoto = file_get_html('http://lombatogel.net/data/sgp_toto-json.php')->plaintext;
+		$src_sgptoto = file_get_html($this->home_url.'data/sgp_toto-json.php')->plaintext;
 		$live_sgptoto .= strstr(preg_replace('/[\[\]\"]/', '', $src_sgptoto), ',');
 		$sgptoto = fopen($data_path.'sgp_toto.php', "w");
 		fwrite($sgptoto, $live_sgptoto);

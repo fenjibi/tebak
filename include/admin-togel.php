@@ -1,6 +1,7 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT']."/bet.php"; ?>
 <input type="text" id="periode" placeholder="Periode" value="<?php echo $bet->get_periode(); ?>" date="<?php echo $bet->get_periode(); ?>" />
 <input type="text" id="search_num" class="number" placeholder="Nomor" maxlength="4"/>
+<input type="text" id="search_name" placeholder="Username" data="" />
 <button type="button" id="search_button" value="">CARI</button>
 <table id="adm-togel">
 	<thead>
@@ -23,12 +24,13 @@ $(function() {
 	$("#search_button").click(function() {
 		$(this).val($("#search_num").val());
 		$("#periode").attr("date", $("#periode").val());
+		$("#search_name").attr("data", $("#search_name").val());
 		get_togel(1);
 	});
 	$("#periode").datepicker( {dateFormat: "yy-mm-dd"} );
 })
 function get_togel(current_page){
-	$.post(window.location.origin+"/bet.php", {page: "get_betting", ajax: "", search_num : $("#search_button").val(), current_page : current_page, periode : $("#periode").attr("date")}, function( data ) {
+	$.post(window.location.origin+"/bet.php", {page: "get_betting", ajax: "", search_num : $("#search_button").val(), search_name : $("#search_name").attr("data"), current_page : current_page, periode : $("#periode").attr("date")}, function( data ) {
 		var togel_list = "";
 		$.each(data, function(index, value) {
 			var set_win = "";
@@ -47,8 +49,8 @@ function get_togel(current_page){
 			dataType: "json",
 			async: false
 		}).responseJSON; */
-		$.post(window.location.origin+"/bet.php" , {page: "get_rows_betting", ajax: "", search_num : $("#search_button").val(), periode : $("#periode").attr("date")}, function(data) {
-			$.post(window.location.origin+"/common.php", {page: "pagination", ajax: "", current_page : current_page, total_rows : data.total_rows}, function( pagination ) {
+		$.post(window.location.origin+"/bet.php" , {page: "get_rows_betting", ajax: "", search_num : $("#search_button").val(), search_name : $("#search_name").attr("data"), periode : $("#periode").attr("date")}, function(data) {
+			$.post(window.location.origin+"/common.php", {page: "pagination", ajax: "", current_page : current_page, total_rows : data.total_rows, row_per_page: 15, func: "get_togel"}, function( pagination ) {
 				$("#adm-togel > tbody").append('<tr><td colspan="6"><div align="center">'+pagination+'</div></td></tr>');
 			}, "html")
 		}, "json")
@@ -76,6 +78,13 @@ function set_toto_winner(bet_id){
 #search_num {
 	padding: 5px;
     width: 57px;
+    border-radius: 4px;
+    margin: 0 10px 10px;
+    font-weight: bold;
+}
+#search_name {
+	padding: 5px;
+    width: 120px;
     border-radius: 4px;
     margin: 0 10px 10px;
     font-weight: bold;

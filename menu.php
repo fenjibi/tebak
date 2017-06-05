@@ -48,6 +48,14 @@ foreach ($page as $plist) {
     <nav class="menu">
         <ul class="clearfix">
             <li><a href="<?php echo $home_url; ?>">Home</a></li>
+<?php
+$admpos = array(1, 2);
+if(in_array($get_user['position'], $admpos)){
+?>
+			<li><a href="<?php echo $home_url; ?>user-list">Daftar User</a></li>
+<?php
+}
+?>
             <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>
             <li><a href="<?php echo $home_url; ?>about">About</a></li>
 			<!-- li>

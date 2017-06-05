@@ -1,10 +1,35 @@
 <?php
-include 'admin.php';
-include 'admin-config.php';
+include $_SERVER['DOCUMENT_ROOT']."/user.php";
 class admin extends user{
 	var $admin_url;
-	function user_list(){
-		
+	function user_list($logged_id){
+		$get_user = $this->get_user($logged_id);
+		if($get_user['position'] == 1){
+			$upos =  '3, 2';
+		}
+		elseif($get_user['position'] == 2) {
+			$upos =  '3';
+		}
+		if(trim($_POST['search_name']) != ''){
+			$search_sql = " and username LIKE '%".$_POST['search_name']."%'";
+		}
+		if(isset($_POST['current_page'])){
+			$start_row = ($_POST['current_page'] - 1)*$_POST['row_per_page'];
+			// $limit = " limit ".$start_row.", ".$row_per_page;
+		}
+		$sql = "select * from user u left join user_detail ud on u.user_id=ud.user_id
+			where position in (".$upos.")".$search_sql;
+		$ulist = $this->mysqli->query($sql);
+		$userlist = array();
+		if($ulist->num_rows > 0){
+			while($urow = $ulist->fetch_assoc()){
+				$userlist[] = $urow;
+			}
+		}
+		$user_list['data'] = array_slice($userlist, $start_row, $_POST['row_per_page']);
+		$user_list['count'] = $ulist->num_rows;
+		return $user_list;
+		$this->mysqli->close();
 	}
 	function update_user($id){
 		$nama = $this->mysqli->real_escape_string($_POST['nama']);
@@ -67,6 +92,12 @@ switch($_POST['page']){
 		break;
 	case set_user:
 		$admin->set_user($_POST['uid']);
+		break;
+	case user_list:
+		$user_list = $admin->user_list($_COOKIE['uid']);
+		if(isset($_POST['ajax'])){
+			echo json_encode($user_list);
+		}
 		break;
 }
 ?>

@@ -36,7 +36,7 @@ if (empty($_GET['page'])) {
 	else {
 ?>
 		<div id="main_content">
-			<?php include "include/tebak-skor.php"; ?>
+			<?php include "include/tebak-skor-highlight.php"; ?>
 		</div>
 		<?php include "include/jawaban-togel.php"; ?>
 		<?php include "include/input-4d.php"; ?>

@@ -28,15 +28,13 @@ h1 a {
 	margin: -5px 0 0;
 }
 h2 {
-	clear: both;
-	text-shadow: 1px 1px 1px #111C1F;
-	font-size: 1.3em;
-	font-weight: normal;
-	height: 23px;
-	background: url(../images/line.gif) repeat-x left top;
-	padding: 10px 0 10px;
-	color: #B5D7DF;
-	margin: 0 0 20px;
+    clear: both;
+    background: url(../images/line.gif) repeat-x left top;
+    padding: 18px 0 0 0;
+    color: #c6ff00;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
 }
 h2 span {
 	float: right;
@@ -150,12 +148,13 @@ img { border: 0; }
 	cursor: pointer;
 }
 #content {
-	clear: both;
-	margin: 0 auto;
-	min-height: 500px;
-	width: 1218px;
-	background: url(../images/contentbg.png) no-repeat center top;
-	padding: 16px 0 0;
+    clear: both;
+    margin: 0 auto;
+    min-height: 500px;
+    width: 1218px;
+    /* background: url(../images/contentbg.jpg) no-repeat center top; */
+    /* padding: 16px 0 0; */
+    border-top: 10px solid #37484e;
 }
 .countdown_tbl th{font-size:10px;font-weight:400;}
 .countdown_tbl td{font-size:24px;color:336699;font-weight:700;width:36px;}
@@ -245,6 +244,20 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
  
 .sub-menu li a:hover, .sub-menu .current-item a {
 	background:#3e3436;
+}
+.menu_4d {
+    margin: 5px;
+    height: 20px;
+}
+.menu_4d span {
+    background: #003c5b;
+    float: left;
+    width: 130px;
+}
+.menu_4d a {
+    text-decoration: underline;
+    color: #fff;
+    letter-spacing: 1px;
 }
 .login {
     padding: 4px 15px;
@@ -530,7 +543,10 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	width: 263px;
 	line-height: 25px;
 }
-#hasil_togel { background-color:#000; }
+#hasil_togel {
+    background-color: #000;
+    text-align: center;
+}
 #hasil_togel th {
     font-size: 16px;
     font-family: Arial,Helvetica,sans-serif;
@@ -577,7 +593,7 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	clear: both;
 	background: url(../images/line.gif) repeat-x;
 	color: #81999F;
-	padding: 20px 0 15px 0;
+	padding: 20px;
 }
 #links { float: right; }
 #links a { margin: 0 0 0 15px; }

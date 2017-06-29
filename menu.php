@@ -1,9 +1,3 @@
-<!-- div class="menu">
-	<div align="center">
-		<table border="0" cellpadding="0" cellspacing="0" height="100%" width="980">
-			<tbody>
-				<tr>
-					<td align="left">
 <?php
 /*include 'user.php';
 $user = $user->get_user($_COOKIE['uid']);
@@ -34,20 +28,18 @@ foreach ($page as $plist) {
 	}
 } */
 ?>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-<div align="center">
-	<marquee class="text_info" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="6" scrolldelay="1">KARTUQ.ORG AGEN BANDARQ, POKER ONLINE, DOMINO ONLINE, QQ ONLINE</marquee>
-</div -->
-
 <div class="menu-wrap">
     <nav class="menu">
         <ul class="clearfix">
             <li><a href="<?php echo $home_url; ?>">Home</a></li>
+			<li>
+                <a style="cursor: pointer;">Togel <span class="arrow">&#9660;</span></a>
+                <ul class="sub-menu">
+                    <li><a href="<?php echo $home_url; ?>hasil-sgp-2017">Hasil Lengkap</a></li>
+					<li><a href="<?php echo $home_url; ?>shio">Shio</a></li>
+					<li><a href="<?php echo $home_url; ?>buku-mimpi">Buku Mimpi</a></li>
+				</ul>
+            </li>
 <?php
 $admpos = array(1, 2);
 if(in_array($get_user['position'], $admpos)){
@@ -58,16 +50,7 @@ if(in_array($get_user['position'], $admpos)){
 ?>
             <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>
             <li><a href="<?php echo $home_url; ?>about">About</a></li>
-			<!-- li>
-                <a href="#">Togel <span class="arrow">&#9660;</span></a>
- 
-                <ul class="sub-menu">
-                    <li><a href="/hasil-togel/sgp-2017.php">Hasil Lengkap</a></li>
-					<li><a href="/togel/shio.php">Shio</a></li>
-					<li><a href="/togel/buku-mimpi.php">Buku Mimpi</a></li>
-				</ul>
-            </li>
-			<li><a href="#">Hadiah</a></li>
+			<!-- li><a href="#">Hadiah</a></li>
 			<li><a href="#">Nonton Bareng</a></li>
 			<li><a href="#">FAQ</a></li -->
 <?php

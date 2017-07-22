@@ -1,28 +1,1 @@
-<h3>PEMENANG TEBAK SKOR</h3>
-<div align="center" id="winner" style="height: 150px;">
-<table border="0" cellpadding="0" cellspacing="0" style="width: 250px;">
-	<tbody>
-		<tr>
-			<td>abc***</td>
-			<td>abc***</td>
-		</tr>
-		<tr>
-			<td>abc***</td>
-			<td>abc***</td>
-		</tr>
-		<tr>
-			<td>abc***</td>
-			<td>abc***</td>
-		</tr>
-		<tr>
-			<td>abc***</td>
-			<td>abc***</td>
-		</tr>
-		<tr>
-			<td>abc***</td>
-			<td>abc***</td>
-		</tr>
-	</tbody>
-</table>
-<span style="float: right; padding: 0 12px 0px 0;"><a href="#">View All</span></a>
-</div>
+<h3>PEMENANG TEBAK SKOR</h3><div id="winner" align="center">	<table id="tekorwinner" cellpadding="0" cellspacing="0">		<tbody><?php include_once $_SERVER['DOCUMENT_ROOT']."/bet.php";$tekor_win_list = $bet->tekor_winner_list();for($a = 0; $a < 5; $a++){	echo "<tr>";	for($b = $a; $b < 10; $b += 5){		echo "<td>".$common->hide_username((empty($tekor_win_list) ? "" : $tekor_win_list[$b]['username']))."</td>";	}	echo "</tr>";}?>		</tbody>	</table>	<span style="float: right; padding: 0 12px 0px 0;"><a href="<?php echo $home_url; ?>tebak-skor-win-list">View All</span></a></div><style>#winner {	height: 150px;}table#tekorwinner {	width: 250px;}table#tekorwinner > tbody > tr > td {	width: 50%;}</style>

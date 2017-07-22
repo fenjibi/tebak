@@ -1,4 +1,100 @@
-<table cellpadding="0" cellspacing="0"><tbody><tr>
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT']."/football_match.php";
+$highlight_match = $football_match->get_match();
+foreach($highlight_match as $highlight){
+	if(!is_null($highlight['home_highlight'])){
+		$hldt = new DateTime($highlight['time']);
+		$hlhome_icon = $highlight['home_team_icon'];
+		$hlhome_name = $highlight['home_team_name'];
+		$hlhome = $highlight['home_highlight'];
+		$hlaway = $highlight['away_highlight'];
+		$hlaway_name = $highlight['away_team_name'];
+		$hlaway_icon = $highlight['away_team_icon'];
+	}
+}
+?>
+<h2 style="background: none;padding: 0 0 18px 0px;">KUIS TEBAK SKOR</h2>
+<table cellpadding="0" cellspacing="0" style="margin: 0 auto;" width="600">
+	<tbody>
+		<tr>
+			<td valign="top" width="160">
+				<img height="100" src="<?php echo $hlhome_icon; ?>" />
+			</td>
+			<td>
+				<center>
+					<b>
+					<font size='2' style='color: #fff;'><?php echo $hlhome_name; ?>
+						&nbsp;&nbsp;<font color='red' size='5'><?php echo $hlhome."&nbsp;:&nbsp;".$hlaway; ?></font>&nbsp;&nbsp;
+					<?php echo $hlaway_name; ?></font>
+					</b>
+					<br />
+					<font size='2'><?php echo $hldt->format('l, F d, Y H:i'); ?></font>
+					<span id='start_date' style='display: none;'><?php echo $hldt->format('m/d/Y H:i'); ?></span>
+					<center>
+						<br />
+						<b>KICKOFF COUNTDOWN:</b>
+						<br />
+						<span id="countdown">
+							<table cellpadding="0" cellspacing="0" class="countdown_tbl">
+								<tbody>
+									<tr>
+										<td></td>
+										<td class="sep">|</td>
+										<td></td>
+										<td class="sep">|</td>
+										<td></td>
+										<td class="sep">|</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>days</th>
+										<th>&nbsp;</th>
+										<th>hrs</th>
+										<th>&nbsp;</th>
+										<th>mins</th>
+										<th>&nbsp;</th>
+										<th>secs</th>
+									</tr>
+								</tbody>
+							</table>
+						</span>
+						<br />
+						<span id="cnt_end" style="display:none">Match kicked off!</span>
+					</center>
+				</center>
+			</td>
+			<td align="right" valign="top" width="160">
+				<img height="100" src="<?php echo $hlaway_icon; ?>" />
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table cellpadding="0" cellspacing="0" style="margin: 0 auto;text-align: center;">
+	<tbody>
+		<tr>
+			<td>
+				<a href="http://bandarbolaasia.com" target="_blank">
+					<span style="font-size: 16px;">Head-to-Head Statistics</span>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="background-color: #0288d1; padding: 6px; box-shadow: 0px 2px 1px 1px #151515; border-radius: 5px; color: #fff;">
+				<a href="<?php echo $home_url; ?>/tebak-skor">TEBAK SEKARANG</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<script type="text/javascript" src="<?php echo $home_url; ?>js/count.js"></script>
+<script>
+$(function() {
+	init();
+});
+</script>
+<!-- table cellpadding="0" cellspacing="0"><tbody><tr>
 
 <td width="160" valign="top" align="left">
 
@@ -48,4 +144,4 @@ Thursday, March 30, 2017
 
 </tr>
 
-</tbody></table>
+</tbody></table -->

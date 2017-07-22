@@ -5,7 +5,7 @@ class bet{
 		$this->mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 	}
 	function get_betting() {
-		$periode_sql = " and periode = '".(isset($_POST['periode']) ? $_POST['periode'] : $this->get_periode())."'";
+		$periode_sql = " and periode = '".(isset($_REQUEST['periode']) ? $_REQUEST['periode'] : $this->get_periode())."'";
 		if(trim($_POST['search_num']) != ''){
 			$search_sql = " and b.number like '%".$_POST['search_num']."%'";
 		}
@@ -156,19 +156,20 @@ class bet{
 		}
 		$this->mysqli->close();
 	}
-	function get_tebakan_skor($match_id="", $time_limit=""){
+	function get_tebakan_skor($match_id="", $tebak_hs="", $tebak_as=""){
 		$sql_mid = $match_id != "" ? " and ts.match_id=".$match_id : "";
-		$sql_time = $time_limit != "" ? " and now() + interval 30 minute < m.time" : "";
+		$sql_ths = $tebak_hs != "" ? " and ts.home_score=".$tebak_hs : "";
+		$sql_tas = $tebak_as != "" ? " and ts.away_score=".$tebak_as : "";
 		$sql = "select match_group, home_team_id, th.team_name home_team_name, away_team_id, ta.team_name away_team_name, 
-				l.league_id, league_name, tebakan_skor_id, ts.match_id, ts.home_score tebak_home, 
-				ts.away_score tebak_away, ts.time, ts.user_id, username, dewahoki_username, jayabola_username 
-			from tebakan_skor ts, game_match m, team th, team ta, league l, user u, user_detail ud 
+				l.league_id, league_name, ts.tebakan_skor_id, ts.match_id, ts.home_score tebak_home, 
+				ts.away_score tebak_away, ts.time, ts.user_id, username, dewahoki_username, jayabola_username, tebak_skor_win_id 
+			from game_match m, team th, team ta, league l, user u, user_detail ud, tebakan_skor ts left join tebak_skor_win tsw on tsw.tebakan_skor_id=ts.tebakan_skor_id 
 			where m.league_id=l.league_id and 
 				m.home_team_id=th.team_id and 
 				m.away_team_id=ta.team_id and 
 				m.match_id=ts.match_id and 
 				ts.user_id=u.user_id and 
-				u.user_id=ud.user_id".$sql_time.$sql_mid;
+				u.user_id=ud.user_id".$sql_mid.$sql_ths.$sql_tas;
 		$get_tebakan_skor = $this->mysqli->query($sql);
 		$tekor = array();
 		if($get_tebakan_skor->num_rows > 0){
@@ -176,8 +177,62 @@ class bet{
 				$tekor[] = $row;
 			}
 		}
-		return $tekor;
+		$tebakanskor['data'] = $tekor;
+		if(isset($_POST['current_page'])){
+			$start_row = ($_POST['current_page'] - 1)*$_POST['row_per_page'];
+			$tebakanskor['data'] = array_slice($tekor, $start_row, $_POST['row_per_page']);
+		}
+		$tebakanskor['count'] = $get_tebakan_skor->num_rows;
+		return $tebakanskor;
 		$this->mysqli->close();
+	}
+	function set_tekor_winner($tekor_id){
+		$sql = "INSERT INTO tebak_skor_win (tebakan_skor_id) VALUES (".$tekor_id.")";
+		$tekorwin = $this->mysqli->query($sql);
+		if($tekorwin){
+			return "Pemenang berhasil disimpan.";
+		}
+		else{
+			return "Gagal. Ada kesalahan.";
+		}
+		$this->mysqli->close();
+	}
+	function tekor_winner_list(){
+		$tekorwinsql = "select ts.tebakan_skor_id, ts.time, u.user_id, username, dewahoki_username, 
+				jayabola_username, tebak_skor_win_id, ts.home_score tebak_home, ts.away_score tebak_away, home_team_id, 
+				th.team_name home_team_name, away_team_id, ta.team_name away_team_name, m.time match_time, l.league_id, league_name 
+			from user u, user_detail ud, tebakan_skor ts, tebak_skor_win tsw, game_match m, team th, team ta, league l 
+            where u.user_id=ts.user_id 
+				and u.user_id=ud.user_id 
+				and tsw.tebakan_skor_id=ts.tebakan_skor_id 
+				and ts.match_id=m.match_id 
+				and m.home_team_id=th.team_id 
+				and m.away_team_id=ta.team_id 
+				and m.league_id=l.league_id 
+			order by ts.time desc";
+		$get_tekor_winner = $this->mysqli->query($tekorwinsql);
+		if($get_tekor_winner->num_rows > 0){
+			while($row = $get_tekor_winner->fetch_assoc()){
+				$tekorwinlist[] = $row;
+			}
+			return $tekorwinlist;
+		}
+		else{
+			return '';
+		}
+		$this->mysqli->close();
+	}
+	function download_data($filename){
+		header('Content-type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment; filename='.$filename);
+		$get_betting = $this->get_betting();
+		if(is_array($get_betting)){
+			$loaded_data = "ID\tTime\tUsername\tNumber\t899Cash\tJayaBola\n";
+			foreach($get_betting as $totobet){
+				$loaded_data .= $totobet['bet_id']."\t".$totobet['time']."\t".$totobet['username']."\t".$totobet['number']."\t".$totobet['dewahoki_username']."\t".$totobet['jayabola_username']."\n";
+			}
+		}
+		echo $loaded_data;
 	}
 }
 $bet = new bet();
@@ -199,6 +254,23 @@ switch($_POST['page']){
 		if(isset($_POST['ajax'])){
 			echo $betfootball;
 		}
+		break;
+	case get_tebakan_skor:
+		$tekor = $bet->get_tebakan_skor($_POST['match_id'], $_POST['home_score'], $_POST['away_score']);
+		if(isset($_POST['ajax'])){
+			echo json_encode($tekor);
+		}
+		break;
+	case set_tekor_winner:
+		$tekor_win = $bet->set_tekor_winner($_POST['tekor_id']);
+		if(isset($_POST['ajax'])){
+			echo $tekor_win;
+		}
+		break;
+}
+switch($_GET['page']){
+	case download_data:
+		$bet->download_data($_GET['filename']);
 		break;
 }
 ?>

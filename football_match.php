@@ -177,14 +177,26 @@ class football_match {
 		}
 		$this->mysqli->close();
 	}
-	function get_match($match_id="", $time_limit=""){
+	function get_match($match_id="", $time_limit="", $orderby="", $tekor=""){
 		$sql_mid = $match_id != "" ? " and match_id=".$match_id : "";
-		$sql_time = $time_limit != "" ? " and now() + interval 30 minute < time" : "";
-		$sql = "select m.*, th.team_name home_team_name, th.team_icon home_team_icon, ta.team_name away_team_name,  ta.team_icon away_team_icon, league_name, league_icon 
-			from game_match m, team th, team ta, league l
+		if($time_limit == "30minutes"){
+			$sql_time = " and now() + interval 30 minute < time";
+		}
+		elseif($time_limit != ""){
+			$sql_time = " and time like '".$time_limit."%'";
+		}
+		else{
+			$sql_time = "";
+		}
+		if($tekor != ""){
+			$sql_tekor = " and tebak_skor=".$tekor;
+		}
+		$sql = "select m.*, th.team_name home_team_name, th.team_icon home_team_icon, ta.team_name away_team_name,  ta.team_icon away_team_icon, league_name, 
+				league_icon, home_highlight, away_highlight 
+			from team th, team ta, league l, game_match m left join football_highlight fh on m.match_id=fh.match_id 
 			where m.league_id=l.league_id
 				and m.home_team_id=th.team_id
-				and m.away_team_id=ta.team_id".$sql_time.$sql_mid;
+				and m.away_team_id=ta.team_id".$sql_time.$sql_mid.$sql_tekor.$orderby;
 		$get_match = $this->mysqli->query($sql);
 		$m = array();
 		if($get_match->num_rows > 0){
@@ -208,7 +220,7 @@ class football_match {
 	}
 	function update_match($match_id){
 		$sql = "update game_match set home_team_id=".$_POST['home_id'].", away_team_id=".$_POST['away_id'].", league_id=".$_POST['league_id'].", match_group='".$_POST['match_group']."', 
-			time='".$_POST['match_time']."'
+			time='".$_POST['match_time']."', tebak_skor=".$_POST['tebak_skor']." 
 			where match_id=".$match_id;
 		$updatem = $this->mysqli->query($sql);
 		if($this->mysqli->affected_rows > 0){
@@ -228,6 +240,19 @@ class football_match {
 		}
 		else{
 			return 'not updated';
+		}
+		$this->mysqli->close();
+	}
+	function set_highlight($match_id, $home_highlight=0, $away_highlight=0){
+		$sql = "insert into football_highlight (football_highlight_id, match_id, home_highlight, away_highlight) 
+			values (1, ".$match_id.", ".$home_highlight.", ".$away_highlight.") on DUPLICATE key 
+			update match_id=".$match_id.", home_highlight=".$home_highlight.", away_highlight=".$away_highlight;
+		$savehl = $this->mysqli->query($sql);
+		if($savehl){
+			return "Highlighted";
+		}
+		else{
+			return "Gagal. Ada kesalahan.";
 		}
 		$this->mysqli->close();
 	}
@@ -285,6 +310,12 @@ switch($_POST['page']){
 			echo "<script>alert('".$savem."');window.location=window.location.origin+'/football-match-adm';</script>";;
 		}
 		break;
+	case get_match:
+		$fmatch = $football_match->get_match($_POST['match_id'], $_POST['match_time'], "", $_POST['tekor']);
+		if(isset($_POST['ajax'])){
+			echo json_encode($fmatch);
+		}
+		break;
 	case delete_match:
 		$delmatch = $football_match->delete_match($_POST['match_id']);
 		if(isset($_POST['ajax'])){
@@ -303,5 +334,10 @@ switch($_POST['page']){
 			echo $upscore;
 		}
 		break;
+	case set_highlight:
+		$savehl = $football_match->set_highlight($_POST['match_id'], $_POST['home_hl'], $_POST['away_hl']);
+		if(isset($_POST['ajax'])){
+			echo $savehl;
+		}
 }
 ?>

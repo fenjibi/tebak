@@ -55,6 +55,13 @@ if($get_user['position'] == 4){
 		}
 		?>
 			</select>
+			<!-- span class="checkbox">
+				<label style="font-size: 1.5em">
+					<input type="checkbox" value=""  />
+					<span class="cr"><i class="cr-icon fa fa-check"></i></span>
+					Tebak Skor
+				</label>
+			</span -->
 			<input type="hidden" name="page" value="save_match" />
 			<input type="submit" value="SUBMIT" class="tombol_submit" />
 		</div>
@@ -88,7 +95,10 @@ foreach($get_match as $match){
 		<td name='group'>".$match['match_group']."</td>
 		<td name='home_team_name' idd='".$match['home_team_id']."'>".$match['home_team_name']."</td>";
 	if($get_user['position'] == 4){
-		$act = "<a onclick='edit_match(".$match['match_id'].")'>
+		$act = "<input type='hidden' name='h_highlight' value='".$match['home_highlight']."' />
+			<input type='hidden' name='a_highlight' value='".$match['away_highlight']."' />
+			<input type='hidden' name='tebak_skor' value='".$match['tebak_skor']."' />
+			<a onclick='edit_match(".$match['match_id'].")'>
 				<img src='".$home_url."images/edit-blue.png' style='cursor: pointer;' />
 			</a>
 			<a onclick='delete_match(".$match['match_id'].")'>
@@ -123,6 +133,10 @@ if($get_user['position'] == 4){
 			<h3>Edit Match</h3>
 		</div>
 		<div class="modal-body">
+			<div id="highlight_match">
+				<input type="text" id="home_highlight" /> : <input type="text" id="away_highlight" />
+				<input type="button" value="HIGHLIGHT" class="tombol_red" id="umatch_highlight" style="width: 120px;" onclick="set_highlight();" />
+			</div>
 			<div>
 				<input type="text" name="match_date" id="new_match_date" placeholder="Tanggal" />
 				<select name="match_hour" id="new_match_hour">
@@ -170,12 +184,20 @@ if($get_user['position'] == 4){
 			}
 			?>
 				</select>
+				<span class="checkbox">
+					<label style="font-size: 1.5em">
+						<input type="checkbox" name='set_tebak_skor' value=""  />
+						<span class="cr"><i class="cr-icon fa fa-check"></i></span>
+						Tebak Skor
+					</label>
+				</span>
 				<input type="button" value="SAVE" class="tombol_submit" id="umatch_save" />
 			</div>
+			<div></div>
 		</div>
 	</div>
 </div>
-<?php
+<?php 
 }
 ?>
 <script>
@@ -217,6 +239,7 @@ $('#umatch_save').click(function() {
 		match_group : $("#new_match_group").val(),
 		home_id : $("#new_home_team").val(),
 		away_id : $("#new_away_team").val(),
+		tebak_skor : $("[name='set_tebak_skor']").is(":checked") ? 1 : 0,
 		ajax: ""
 	};
 	$.post(window.location.origin+"/football_match.php" , data, function(res) {
@@ -228,8 +251,12 @@ $('#umatch_save').click(function() {
 	});
 });
 function edit_match(match_id){
+	$("#umatch_modal #home_highlight").val($("#match_list tr#"+match_id+" [name='h_highlight']").val());
+	$("#umatch_modal #away_highlight").val($("#match_list tr#"+match_id+" [name='a_highlight']").val());
+	$(".modal-body div:last-child").html("");
 	$("#umatch_modal").show();
 	var umatch_time = $("#match_list tr#"+match_id+" [name='match_time']").text().split(' ');
+	var umatch_tekor = $("#match_list tr#"+match_id+" [name='tebak_skor']").val() == "0" ? false : true;
 	$("#umatch_modal #new_match_date").val(umatch_time[0]);
 	$("#umatch_modal select#new_match_hour").val(umatch_time[1].split(':')[0]);
 	$("#umatch_modal select#new_match_minute").val(umatch_time[1].split(':')[1]);
@@ -237,6 +264,7 @@ function edit_match(match_id){
 	$("#umatch_modal #new_match_group").val($("#match_list tr#"+match_id+" [name='group']").text());
 	$("#umatch_modal select#new_home_team").val($("#match_list tr#"+match_id+" [name='home_team_name']").attr("idd"));
 	$("#umatch_modal select#new_away_team").val($("#match_list tr#"+match_id+" [name='away_team_name']").attr("idd"));
+	$("#umatch_modal [name='set_tebak_skor']").prop('checked',umatch_tekor);
 	$("#umatch_save").attr("idd", match_id);
 }
 $(".close").click(function() {
@@ -270,7 +298,29 @@ function update_score(match_id){
 		} */
 	});
 }
+function set_highlight(){
+	var match_id = $("#umatch_save").attr("idd");
+	var home_hl = $("#home_highlight").val()=="" ? 0 : $("#home_highlight").val();
+	var away_hl = $("#away_highlight").val()=="" ? 0 : $("#away_highlight").val();
+	var data = {
+		page : "set_highlight",
+		match_id : match_id,
+		home_hl : home_hl,
+		away_hl : away_hl,
+		ajax: ""
+	};
+	$.post(window.location.origin+"/football_match.php" , data, function(res) {
+		$(".modal-body div:last-child").html(res);
+		if(res == "Highlighted"){
+			$("#match_list tr [name='h_highlight'], #match_list tr [name='a_highlight']").val('');
+			$("#match_list tr#"+match_id+" [name='h_highlight']").val(home_hl);
+			$("#match_list tr#"+match_id+" [name='a_highlight']").val(away_hl);
+			setTimeout( function(){$(".close").click();}, 1000);
+		}
+	});
+}
 </script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
 #match_form {
 	text-align: center;
@@ -288,7 +338,7 @@ function update_score(match_id){
 	max-width: 300px;
 }
 [name="home_team"], [name="away_team"] {
-	max-width: 230px;
+	max-width: 170px;
 }
 #match_list {
 	width: 100%;
@@ -380,6 +430,76 @@ function update_score(match_id){
 	padding: 15px;
 	text-align: center;
 }
+#highlight_match {
+	margin: 0 0 10px;
+    border-radius: 5px;
+    border: 1px solid #f11200;
+    padding: 10px;
+	font-size: 1.5em;
+    font-weight: bold;
+}
+#home_highlight, #away_highlight {
+	padding: 5px;
+    border-radius: 4px;
+    width: 40px;
+}
+
+.checkbox {
+	vertical-align: middle;
+    display: inline-block;
+    line-height: 1.4;
+	margin-left: 5px;
+}
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .2em;
+}
+.radio .cr {
+    border-radius: 50%;
+}
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
 </style>
 <!-- input type="text" id="search_num" class="number" placeholder="Nomor" maxlength="4"/>
 <input type="text" id="search_name" placeholder="Username" data="" />
@@ -391,7 +511,6 @@ function update_score(match_id){
 			<th>Time</th>
 			<th>Username</th>
 			<th>Number</th>
-			<th>DewaHoki</th>
 			<th>JayaBola</th>
 			<th>Win</th>
 		</tr>

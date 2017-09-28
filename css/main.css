@@ -157,7 +157,7 @@ img { border: 0; }
     border-top: 10px solid #37484e;
 }
 .countdown_tbl th{font-size:10px;font-weight:400;}
-.countdown_tbl td{font-size:24px;color:336699;font-weight:700;width:36px;}
+.countdown_tbl td{font-size:24px;color: #feb929;font-weight:700;width:36px;}
 .countdown_tbl .sep{font-size:16px;width:3px;font-weight:400;}
 .countdown_tbl{border:none;text-align:center;font-family:sans-serif;}
 div.countdown_tbl{font-size:18px;font-weight:700;}
@@ -625,4 +625,41 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 }
 .member_area {
 	width: 230px;
+}
+.blink {
+	-webkit-animation: blink .75s linear infinite;
+	-moz-animation: blink .75s linear infinite;
+	-ms-animation: blink .75s linear infinite;
+	-o-animation: blink .75s linear infinite;
+	 animation: blink .75s linear infinite;
+}
+@-webkit-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-moz-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-ms-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-o-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
 }

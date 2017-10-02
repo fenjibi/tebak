@@ -45,7 +45,7 @@
 	else{
 		echo "<li class='member_area'><span>Hi, ".$get_user['username']."</span>".
 				"<a style='float:right; cursor:pointer;' onclick='logout(".$_COOKIE['uid'].")'>Log&nbsp;Out</a></li>".
-			"<li class='member_area'>ID DEWAHOKI : ".$get_user['dewahoki_username']."</li>".
+			"<li class='member_area'>ID 899CASH : ".$get_user['dewahoki_username']."</li>".
 			"<li class='member_area'>ID JAYABOLA : ".$get_user['jayabola_username']."</li>";
 	?>
 		<li><a style='cursor:pointer;' id='chpass' onclick='toggle_chpass()'>Ubah&nbsp;Password&nbsp;<span id='navsign'>&or;</span></a></li>

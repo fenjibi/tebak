@@ -44,7 +44,28 @@ if (empty($_GET['page'])) {
 	}
 }
 else if(file_exists("include/".$_GET['page'].'.php')){
-	include "include/".$_GET['page'].'.php';
+	$pageuser[4] = array("football-match-adm", "football-setup-adm");
+	$pageuser[5] = array("football-match-adm", "admin-tebak-skor");
+	$restricted = 0;
+	foreach ($pageuser as $pu){
+		if(in_array($_GET['page'], $pu)){
+			$restricted = 1;
+		}
+	}
+	if($restricted == 1){
+		if(empty($pageuser[$get_user['position']])){
+			echo '<script>window.location=window.location.origin;</script>';
+		}
+		elseif(in_array($_GET['page'], $pageuser[$get_user['position']])){
+			include "include/".$_GET['page'].'.php';
+		}
+		else{
+			echo '<script>window.location=window.location.origin;</script>';
+		}
+	}
+	elseif($restricted == 0){
+		include "include/".$_GET['page'].'.php';
+	}
 }
 else {
 	if($page_data){

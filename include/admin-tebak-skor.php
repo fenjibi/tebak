@@ -112,8 +112,10 @@ function get_tebak_skor(current_page){
 		match_id : $("#football_match").attr("mid"),
 		home_score : $("#home_score").attr("score"),
 		away_score : $("#away_score").attr("score"),
+		time_limit : $("#match_date").val(),
+		order_by : " order by ts.time asc",
 		current_page : current_page,
-		row_per_page: 2,
+		row_per_page: 10,
 		ajax: ""
 	};
 	$.post(window.location.origin+"/bet.php", data, function( rst ) {
@@ -132,7 +134,7 @@ function get_tebak_skor(current_page){
 			page: "pagination",
 			current_page: current_page,
 			total_rows: res.count,
-			row_per_page: 2,
+			row_per_page: 10,
 			func: "get_tebak_skor",
 			ajax: ""
 		};

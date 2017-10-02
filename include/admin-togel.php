@@ -3,6 +3,7 @@
 <input type="text" id="search_num" class="number" placeholder="Nomor" maxlength="4"/>
 <input type="text" id="search_name" placeholder="Username" data="" />
 <button type="button" id="search_button" value="">CARI</button>
+<button type="button" id="download_button" value="" onclick="download_xls()">DOWNLOAD</button>
 <table id="adm-togel">
 	<thead>
 		<tr>
@@ -10,7 +11,7 @@
 			<th>Time</th>
 			<th>Username</th>
 			<th>Number</th>
-			<th>DewaHoki</th>
+			<th>899Cash</th>
 			<th>JayaBola</th>
 			<th>Win</th>
 		</tr>
@@ -67,6 +68,9 @@ function set_toto_winner(bet_id){
 		});
 	}
 }
+function download_xls(){
+	window.open(window.location.origin+"/bet.php?page=download_data&filename=indofreebet-toto-"+$("#periode").attr("date")+".xls&periode="+$("#periode").attr("date"), '_blank');
+}
 </script>
 <style>
 #periode {
@@ -89,12 +93,15 @@ function set_toto_winner(bet_id){
     margin: 0 10px 10px;
     font-weight: bold;
 }
-#search_button {
+#search_button, #download_button {
 	padding: 5px;
     color: #fff;
     background-color: #000;
     cursor: pointer;
     width: 60px;
+}
+#download_button {
+	width: 100px;
 }
 #adm-togel {
 	width: 100%;

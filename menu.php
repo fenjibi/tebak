@@ -40,12 +40,41 @@ foreach ($page as $plist) {
 					<li><a href="<?php echo $home_url; ?>buku-mimpi">Buku Mimpi</a></li>
 				</ul>
             </li>
+			<li><a href="<?php echo $home_url; ?>tebak-skor">Tebak Skor</a></li>
 <?php
 $admpos = array(1, 2);
+$pageuser[4][1]['link'] = "#";
+$pageuser[4][1]['label'] = "Football";
+$pageuser[4][1][1]['link'] = "football-setup-adm";
+$pageuser[4][1][1]['label'] = "Set Up";
+$pageuser[4][1][2]['link'] = "football-match-adm";
+$pageuser[4][1][2]['label'] = "Match";
+$pageuser[5][1]['link'] = "#";
+$pageuser[5][1]['label'] = "Football";
+$pageuser[5][1][1]['link'] = "football-match-adm";
+$pageuser[5][1][1]['label'] = "Match";
+$pageuser[5][1][2]['link'] = "admin-tebak-skor";
+$pageuser[5][1][2]['label'] = "Admin Tebak Skor";
 if(in_array($get_user['position'], $admpos)){
 ?>
 			<li><a href="<?php echo $home_url; ?>user-list">Daftar User</a></li>
 <?php
+}
+elseif(array_key_exists($get_user['position'], $pageuser)) {
+	foreach($pageuser[$get_user['position']] as $m){
+		echo "<li><a href=".$m['link'].">".$m['label']."</a>";
+		$smcount = 0;
+		foreach($m as $k => $v){
+			if(is_numeric($k)){
+				$submenu .= "<li><a href='".$v['link']."'>".$v['label']."</a></li>";
+				$smcount++;
+			}
+		}
+		if($smcount > 0){
+			echo "<ul class='sub-menu'>".$submenu."</ul>";
+		}
+		echo "</li>";
+	}
 }
 ?>
             <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>

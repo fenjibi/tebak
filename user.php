@@ -29,7 +29,7 @@ class user{
 		$chksql1 = "select * from user_detail where dewahoki_username='".$dewahokiuser."'";
 		$uchk1 = $mysqli->query($chksql1);
 		if($uchk1->num_rows > 0){
-			echo "<script>alert('Username DewaHoki sudah ada. Ganti yang lain.');window.location=window.location.origin+'/register';</script>";
+			echo "<script>alert('Username 899Cash sudah ada. Ganti yang lain.');window.location=window.location.origin+'/register';</script>";
 			return;
 		}
 		$chksql2 = "select * from user_detail where jayabola_username='".$jayabolauser."'";

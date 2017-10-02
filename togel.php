@@ -38,15 +38,15 @@ class togel {
 		fclose($sgptoto);
 	}
 	function save_result_sgp(){
-		$ssql = "SELECT id FROM hasil_togel_sg WHERE tanggal = '".date('Y-m-d')."'";
+		$ssql = "SELECT id FROM hasil_togel_sgp WHERE tanggal = '".date('Y-m-d')."'";
 		$sresult = $this->mysqli->query($ssql);
 		if($sresult->num_rows == 1){
-			$sql = "UPDATE hasil_togel_sg SET nomor='".$_POST['val']."' WHERE tanggal='".date('Y-m-d')."'";
+			$sql = "UPDATE hasil_togel_sgp SET nomor='".$_POST['val']."' WHERE tanggal='".date('Y-m-d')."'";
 			$result = $this->mysqli->query($sql);
 			$a = "Updated";
 		}
 		else{
-			$sql = "INSERT INTO hasil_togel_sg (tanggal, nomor) VALUES ('".date('Y-m-d')."', '".$_POST['val']."')";
+			$sql = "INSERT INTO hasil_togel_sgp (tanggal, nomor) VALUES ('".date('Y-m-d')."', '".$_POST['val']."')";
 			$result = $this->mysqli->query($sql);
 			if($result) {
 				$a = "Inserted";
@@ -59,14 +59,28 @@ class togel {
 		$sresult->close();
 		$this->mysqli->close();
 	}
+	function get_hasil_togel($region, $year){
+		$sql = "select * from hasil_togel_".$region." 
+            where tanggal LIKE '".$year."-%' order by tanggal asc";
+		$get_rst = $this->mysqli->query($sql);
+		if($get_rst->num_rows > 0){	
+			while($row = $get_rst->fetch_assoc()){
+				$rst[] = $row;
+			}
+		}
+		$rst['data'] = $rst;
+		$rst['count'] = $get_rst->num_rows;
+		return $rst;
+		$this->mysqli->close();
+	}
 }
 $togel = new togel();
 $togel->home_url = $home_url;
 switch($_POST['page']){
-	case getlive:
+	case "getlive":
 		$togel->getlive();
 		break;
-	case save-result-sgp:
+	case "save-result-sgp":
 		$togel->save_result_sgp();
 		break;
 }

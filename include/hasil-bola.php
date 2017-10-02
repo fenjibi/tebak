@@ -1,5 +1,4 @@
 <div class="container">
-
 	<ul class="tabs">
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT']."/football_match.php";
@@ -25,7 +24,7 @@ foreach($get_league as $league){
 		</div>
 		<table class='hasil_bola' cellpadding='0' cellspacing='0'>
 			<thead>
-				<tr>
+				<tr style='font-size: 13px;'>
 					<th colspan='4' align='right'>Home Team</th>
 					<th>Score</th>
 					<th colspan='2' align='left'>Away Team</th>
@@ -47,7 +46,7 @@ foreach($get_league as $league){
 					<td class='match_time'>".$dt->format('H:i')."</td>
 					<td class='home_name'>".$match['home_team_name']."</td>
 					<td class='home_icon'><img src='".$match['home_team_icon']."' style='width: 15px;' /></td>
-					<td align='center'>".$match['home_score']."&nbsp;-&nbsp;".$match['away_score']."</td>
+					<td class='skor' align='center'>".$match['home_score']."&nbsp;-&nbsp;".$match['away_score']."</td>
 					<td class='away_icon'><img src='".$match['away_team_icon']."' style='width: 15px;' /></td>
 					<td class='away_name'>".$match['away_team_name']."</td>
 				</tr>";
@@ -75,6 +74,10 @@ $(document).ready(function(){
 .container{
 	margin: 0 auto;
 }
+ul.tabs{
+	white-space: nowrap;
+    overflow-x: auto;
+}
 ul.tabs li{
 	background: #ededed;
 	color: #222;
@@ -88,10 +91,12 @@ ul.tabs li.current{
 }
 .tab-content{
 	display: none;
-	background: #cce4ff;
+	background: #ffffff;
 }
 .tab-content.current{
 	display: inherit;
+	max-height: 870px;
+    overflow-y: auto;
 }
 [name='league_desc'] {
 	display: table;
@@ -101,6 +106,7 @@ ul.tabs li.current{
 	display: table-cell;
     vertical-align: middle;
     font-weight: bold;
+	color: #000;
 }
 .hasil_bola {
 	width: 100%;
@@ -109,16 +115,19 @@ ul.tabs li.current{
 	font-size: 13px;
 }
 .hasil_bola th, .hasil_bola td {
-	padding: 5px;
+	padding: 7px;
+	border-bottom: 1px solid #6d6d6d;
 }
 .match_bydate {
-	background: linear-gradient(to bottom, #edf1f6 0%,#dde1e6 100%);
+	background: #666666;
     padding-left: 8px;
     border-bottom: 1px solid #ccd0d5;
     border-top: 1px solid #ccd0d5;
+	color: #fff;
 }
 .match_row {
-	background-color: #e3f0ff;
+	background-color: #fff;
+	color: #000;
 }
 .match_time {
 	width: 40px;
@@ -131,5 +140,12 @@ ul.tabs li.current{
 }
 .away_name {
 	text-align: left;
+}
+.skor {
+	border-radius: 6px;
+	background: #dddddd;
+	width: 13%;
+	border-bottom: 0px solid #6d6d6d;
+    font-weight: 700;
 }
 </style>

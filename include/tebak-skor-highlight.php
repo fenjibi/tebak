@@ -17,13 +17,13 @@ foreach($highlight_match as $highlight){
 <table cellpadding="0" cellspacing="0" style="margin: 0 auto;" width="600">
 	<tbody>
 		<tr>
-			<td valign="top" width="160">
-				<img height="100" src="<?php echo $hlhome_icon; ?>" />
+			<td valign="top" width="100" style="box-shadow: 2px 4px 9px #000000; border-radius: 6px; background: rgba(0,0,0,0.1);">
+				<img height="100" style="padding: 18px 5px 0px 5px;" src="<?php echo $hlhome_icon; ?>" />
 			</td>
 			<td>
 				<center>
 					<b>
-					<font size='2' style='color: #fff;'><?php echo $hlhome_name; ?>
+					<font size='2' style='color: #fff; font-size: 18px;'><?php echo $hlhome_name; ?>
 						&nbsp;&nbsp;<font color='red' size='5'><?php echo $hlhome."&nbsp;:&nbsp;".$hlaway; ?></font>&nbsp;&nbsp;
 					<?php echo $hlaway_name; ?></font>
 					</b>
@@ -32,7 +32,7 @@ foreach($highlight_match as $highlight){
 					<span id='start_date' style='display: none;'><?php echo $hldt->format('m/d/Y H:i'); ?></span>
 					<center>
 						<br />
-						<b>KICKOFF COUNTDOWN:</b>
+						<b style="letter-spacing: 3px;font-size: 14px;color: #07f236;">KICKOFF COUNTDOWN:</b>
 						<br />
 						<span id="countdown">
 							<table cellpadding="0" cellspacing="0" class="countdown_tbl">
@@ -63,8 +63,8 @@ foreach($highlight_match as $highlight){
 					</center>
 				</center>
 			</td>
-			<td align="right" valign="top" width="160">
-				<img height="100" src="<?php echo $hlaway_icon; ?>" />
+			<td align="right" valign="top" width="100" style="box-shadow: -2px 4px 9px #000000; border-radius: 6px; background: rgba(0,0,0,0.1);">
+				<img height="100" style="padding: 18px 5px 0px 5px;" src="<?php echo $hlaway_icon; ?>" />
 			</td>
 		</tr>
 	</tbody>
@@ -73,8 +73,8 @@ foreach($highlight_match as $highlight){
 	<tbody>
 		<tr>
 			<td>
-				<a href="http://bandarbolaasia.com" target="_blank">
-					<span style="font-size: 16px;">Head-to-Head Statistics</span>
+				<a href="<?php echo $home_url; ?>live-bola">
+					<span style="font-size: 16px;">Watch Live Here</span>
 				</a>
 			</td>
 		</tr>
@@ -83,7 +83,9 @@ foreach($highlight_match as $highlight){
 		</tr>
 		<tr>
 			<td style="background-color: #0288d1; padding: 6px; box-shadow: 0px 2px 1px 1px #151515; border-radius: 5px; color: #fff;">
-				<a href="<?php echo $home_url; ?>/tebak-skor">TEBAK SEKARANG</a>
+				<a href="<?php echo $home_url; ?>tebak-skor" style="color: #000000;font-weight: 700;">
+					<span class="blink">TEBAK SEKARANG</span>
+				</a>
 			</td>
 		</tr>
 	</tbody>

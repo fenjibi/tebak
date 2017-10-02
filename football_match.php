@@ -178,7 +178,7 @@ class football_match {
 		$this->mysqli->close();
 	}
 	function get_match($match_id="", $time_limit="", $orderby="", $tekor=""){
-		$sql_mid = $match_id != "" ? " and match_id=".$match_id : "";
+		$sql_mid = $match_id != "" ? " and m.match_id=".$match_id : "";
 		if($time_limit == "30minutes"){
 			$sql_time = " and now() + interval 30 minute < time";
 		}

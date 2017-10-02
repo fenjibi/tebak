@@ -136,13 +136,13 @@ class bet{
 		include $_SERVER['DOCUMENT_ROOT']."/football_match.php";
 		$match = $football_match->get_match($match_id, "30minutes");
 		if(empty($match)){
-			return "Tebakan skor pertandingan ini tidak berhasil disimpan.\nWaktu menebak s/d 30 menit sebelum waktunya.";
+			return "Tebak skor ini sudah di TUTUP.\nSilahkan pilih pertandingan yang lain.";
 		}
 		$tebak_skor_sql = "select * from tebakan_skor 
 			where user_id=".$uid." and match_id=".$match_id;
 		$tebak_skor_chk = $this->mysqli->query($tebak_skor_sql);
 		if($tebak_skor_chk->num_rows > 0){
-			echo "Tebakan Anda untuk pertandingan ini sudah ada.\nSetiap user hanya boleh menebak 1 x per pertandingan.";
+			echo "Tebakan Anda untuk pertandingan ini sudah ada.\nSetiap peserta hanya boleh menebak 1 x per pertandingan.";
 			return;
 		}
 		$sql = "INSERT INTO tebakan_skor (user_id, match_id, home_score, away_score) 
@@ -156,10 +156,19 @@ class bet{
 		}
 		$this->mysqli->close();
 	}
-	function get_tebakan_skor($match_id="", $tebak_hs="", $tebak_as=""){
+	function get_tebakan_skor($match_id="", $tebak_hs="", $tebak_as="", $orderby="", $time_limit=""){
 		$sql_mid = $match_id != "" ? " and ts.match_id=".$match_id : "";
 		$sql_ths = $tebak_hs != "" ? " and ts.home_score=".$tebak_hs : "";
 		$sql_tas = $tebak_as != "" ? " and ts.away_score=".$tebak_as : "";
+		if($time_limit == "1day"){
+			$sql_time = " and now() < m.time + interval 1 day";
+		}
+		elseif($time_limit != ""){
+			$sql_time = " and m.time like '".$time_limit."%'";
+		}
+		else{
+			$sql_time = "";
+		}
 		$sql = "select match_group, home_team_id, th.team_name home_team_name, away_team_id, ta.team_name away_team_name, 
 				l.league_id, league_name, ts.tebakan_skor_id, ts.match_id, ts.home_score tebak_home, 
 				ts.away_score tebak_away, ts.time, ts.user_id, username, dewahoki_username, jayabola_username, tebak_skor_win_id 
@@ -169,11 +178,13 @@ class bet{
 				m.away_team_id=ta.team_id and 
 				m.match_id=ts.match_id and 
 				ts.user_id=u.user_id and 
-				u.user_id=ud.user_id".$sql_mid.$sql_ths.$sql_tas;
+				u.user_id=ud.user_id".$sql_mid.$sql_ths.$sql_tas.$sql_time.$orderby;
 		$get_tebakan_skor = $this->mysqli->query($sql);
 		$tekor = array();
 		if($get_tebakan_skor->num_rows > 0){
 			while($row = $get_tebakan_skor->fetch_assoc()){
+				$bet_time = new DateTime($row['time']);
+				$row['tekor_time_format'] = date_format($bet_time, 'D M j, g:i:sa');
 				$tekor[] = $row;
 			}
 		}
@@ -215,7 +226,13 @@ class bet{
 			while($row = $get_tekor_winner->fetch_assoc()){
 				$tekorwinlist[] = $row;
 			}
-			return $tekorwinlist;
+			$tebakanskorwinlist['data'] = $tekorwinlist;
+			if(isset($_POST['current_page'])){
+				$start_row = ($_POST['current_page'] - 1)*$_POST['row_per_page'];
+				$tebakanskorwinlist['data'] = array_slice($tekorwinlist, $start_row, $_POST['row_per_page']);
+			}
+			$tebakanskorwinlist['count'] = $get_tekor_winner->num_rows;
+			return $tebakanskorwinlist;
 		}
 		else{
 			return '';
@@ -256,7 +273,7 @@ switch($_POST['page']){
 		}
 		break;
 	case get_tebakan_skor:
-		$tekor = $bet->get_tebakan_skor($_POST['match_id'], $_POST['home_score'], $_POST['away_score']);
+		$tekor = $bet->get_tebakan_skor($_POST['match_id'], $_POST['home_score'], $_POST['away_score'], $_POST['order_by'], $_POST['time_limit']);
 		if(isset($_POST['ajax'])){
 			echo json_encode($tekor);
 		}
@@ -265,6 +282,12 @@ switch($_POST['page']){
 		$tekor_win = $bet->set_tekor_winner($_POST['tekor_id']);
 		if(isset($_POST['ajax'])){
 			echo $tekor_win;
+		}
+		break;
+	case tekor_winner_list:
+		$tekor_winlist = $bet->tekor_winner_list();
+		if(isset($_POST['ajax'])){
+			echo json_encode($tekor_winlist);
 		}
 		break;
 }

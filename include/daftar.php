@@ -23,9 +23,9 @@
 			<p><span style="color:#FF0000;">* </span><span style="color:#FFD700;">Sebelum isi bagian ini, pastikan anda sudah mendaftar di website sponsor.<br />
 			Dan harap di isi sesuai dengan ID yang di daftarkan.</span></p>
 			<br />
-			<input class="login" name="id_dewahoki" placeholder="ID DEWAHOKI *" size="20" type="text" />&nbsp; &nbsp;Dapatkan ID DewaHoki di <a href="http://dewahoki.us" target="_blank">sini</a><br />
+			<input class="login" name="id_dewahoki" placeholder="ID 899CASH *" size="20" type="text" />&nbsp; &nbsp;Dapatkan ID 899Cash di <a href="http://899cash.net" target="_blank">sini</a><br />
 			<br />
-			<input class="login" name="id_jayabola" placeholder="ID JAYABOLA *" size="20" type="text" />&nbsp; &nbsp;Dapatkan ID JayaBola di <a href="http://dewahoki.us" target="_blank">sini</a><br />
+			<input class="login" name="id_jayabola" placeholder="ID JAYABOLA *" size="20" type="text" />&nbsp; &nbsp;Dapatkan ID JayaBola di <a href="http://899cash.net" target="_blank">sini</a><br />
 			<br />
 			<input class="login" name="code" placeholder="CODE" size="5" type="text" /> <img src="kkol.jpg"><br />
 			<br/>

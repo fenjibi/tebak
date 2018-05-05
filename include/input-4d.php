@@ -49,7 +49,7 @@ else{
 	<span class="free">MASUKKAN JAWABAN LOMBA TOGEL 4D DISINI (MAX 20 LN)</span>
 	    <form style="margin: 14px 0 0 0;">
 		<div class="chexbox" style="font-size: 13px;color: #93a3aa;margin-left: 10px;margin-top: 10px;width: 321px;">
-		    <input name="chek" id="chek" type="checkbox" /> Saya sudah mengerti <a href="/legal.php">Syarat & Kondisi</a> lomba ini</div>
+		    <input name="chek" id="chek" type="checkbox" /> Saya sudah mengerti <a href="<?php echo $home_url; ?>syarat-kondisi">Syarat & Kondisi</a> lomba ini</div>
 		    <br/>
 			<input type="text" placeholder="AS" maxlength="1" class="tebak_4d number" id="as">
 			<input type="text" placeholder="KOP" maxlength="1" class="tebak_4d number" id="kop">
@@ -66,12 +66,14 @@ function check_login(){
 }
 function check_tebak(){
 	var num = [];
-	$(".tebak_4d").each(function(){
+	$(".tebak_4d").each(function(i, v){
 		if($(this).val().length < 4){
 			$(this).val("");
 		}
 		else {
-			num.push($(this).val());
+			if($.inArray($(this).val(), num) === -1){
+				num.push($(this).val());
+			}
 		}
 	});
 	var nobet = num.join(',');
@@ -82,12 +84,6 @@ function check_tebak(){
 		alert('Tidak ada nomor disubmit.');
 	}
 	else{
-<<<<<<< Updated upstream
-		var nobet = $("#as").val()+$("#kop").val()+$("#kep").val()+$("#ek").val();
-		$.post(window.location.origin+"/bet.php", {page: "betting_toto", nobet: nobet <?php echo (isset($_COOKIE['uid']) ? ', uid: '.$_COOKIE['uid'] : ''); ?>}, function( data ) {
-			$("#response").html(data).css("opacity", "1").animate({opacity: 0}, 8000);
-		});
-=======
 		if (confirm('Submit no :\n'+nobet)) {
 			$.post(window.location.origin+"/bet.php", {page: "betting_toto", nobet: nobet <?php echo (isset($_COOKIE['uid']) ? ', uid: '.$_COOKIE['uid'] : ''); ?>}, function( data ) {
 				alert(data);
@@ -96,7 +92,6 @@ function check_tebak(){
 				}
 			});
 		}
->>>>>>> Stashed changes
 	}
 }
 </script>

@@ -1,5 +1,6 @@
 <?php
 	date_default_timezone_set('Asia/Jakarta');
+	include_once $_SERVER['DOCUMENT_ROOT']."/togel.php";
 	if($dd== ""){
                 $dd= "live2";
 		$weekdays = array("Wednesday", "Saturday", "Sunday");
@@ -19,9 +20,12 @@
 			}
 		}
 	}
+	$togel->__construct();
+	$sgptoto_date = $togel->get_shio(date("Y-m-d"));
+	$sgptoto_shio = $sgptoto_date['shio'];
 ?>
 <div id="sgp">
-<h3><span id="toto-0">Singapore TOTO</span><img src="<?=$home_url?>images/<?php echo $toto; ?>.gif" style="float: right;" /></h3>
+<h3><span id="toto-0">SINGAPORE TOTO</span><img src="<?=$home_url?>images/<?php echo $toto; ?>.gif" style="float: right;" /></h3>
 
 <div align="center" class="live_sgp">
 <table align="center" border="0" class="live_4d" style="width: 100%;padding: 0 0 16px 0px;">
@@ -81,7 +85,7 @@
 			<table border="0" class="jadwal_toto" style="width: 100%;">
 				<tbody>
 					<tr>
-						<td align="center" class="result_49" colspan="6">RESULT&nbsp; &nbsp;<span class="resulttop_toto" id="resulttop_toto"><span id="toto-10">--</span></span></td>
+						<td align="center" class="result_49" colspan="6">RESULT :&nbsp; &nbsp;<span class="resulttop_toto" id="resulttop_toto"><span id="toto-10" animal="<?php echo $sgptoto_shio; ?>">--</span></span></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -98,3 +102,6 @@
 </table>
 </div>
 </div>
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT']."/include/togel-detail.php";
+?>

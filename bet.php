@@ -82,22 +82,37 @@ class bet{
 		}
 		$c = 0;
 		$remaining = 20 - $periode_chk->num_rows;
+		while($bets = $periode_chk->fetch_assoc()){
+			$number[] = $bets['number'];
+		}
 		foreach ($nobets as $nbet) {
 			if($remaining > $c){
 				$numbet = strlen($nbet) > 4 ? substr($nbet,0,4) : $nbet;
-				$inserts[] = $numbet;
-				$insert[] = "(".$uid.", '".$numbet."', '".$periode."')";
-				$c++;
+				if(empty($number)){
+					$inserts[] = $numbet;
+					$insert[] = "(".$uid.", '".$numbet."', '".$periode."')";
+					$c++;
+				}
+				elseif (!in_array($numbet, $number)) {
+					$inserts[] = $numbet;
+					$insert[] = "(".$uid.", '".$numbet."', '".$periode."')";
+					$c++;
+				}
 			}
 		}
-		$sql = "INSERT INTO bet (user_id, number, periode) 
-			VALUES ".implode(", ",$insert);
-		$bet = $this->mysqli->query($sql);
-		if($bet){
-			echo $c." Tebakan disimpan. Semoga beruntung.\n".implode(", ",$inserts);
+		if($c == 0){
+			echo "Tebakan sudah ada. Silahkan submit nomor lainnya.";
 		}
 		else{
-			echo "Gagal. Ada kesalahan.";
+			$sql = "INSERT INTO bet (user_id, number, periode) 
+				VALUES ".implode(", ",$insert);
+			$bet = $this->mysqli->query($sql);
+			if($bet){
+				echo $c." Tebakan disimpan. Semoga beruntung.\n".implode(", ",$inserts);
+			}
+			else{
+				echo "Gagal. Ada kesalahan.";
+			}
 		}
 		$this->mysqli->close();
 	}

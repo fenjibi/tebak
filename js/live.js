@@ -2,7 +2,7 @@ function populate(){
 	var toto = [];
 	var rstpos = 0;
 	var addition = 0;
-	$.ajax("data/macau45toto_4d.php").done(function(data) {
+	$.ajax(window.location.origin+"/data/macau45toto_4d.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			if(value.trim() == ''){
@@ -11,7 +11,7 @@ function populate(){
 			$("#macau45toto #data-"+key).html(value);
 		});
 	})
-	$.ajax("data/macau45toto_toto.php").done(function(data) {
+	$.ajax(window.location.origin+"/data/macau45toto_toto.php").done(function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			if(value.trim() == ''){
@@ -31,17 +31,47 @@ function populate(){
 			get_result(toto, rstpos);
 		}
 	})
-	$.ajax("data/sgp_4d.php").done(function(data) {
+	var livesgp4d = {
+		page : "getlive",
+		name : "Singapore 4D",
+		ajax: ""
+	};
+	$.post(window.location.origin+"/togel.php", livesgp4d, function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
-			$("#sgp #data-"+key).text(value);
+			if (!value){
+				value = '<img src="'+window.location.origin+'/images/loading.gif" width="10" height="10" alt"" />';
+			}
+			$("#sgp #data-"+key).html(value);
 		});
+		if($("#sgp #data-3").text().length == 4){
+			$('#sgp #data-3').addClass('todet');
+			$(".todet").click(todet);
+		}
+		else{
+			$('#sgp #data-3').removeClass('todet');
+		}
 	})
-	$.ajax("data/sgp_toto.php").done(function(data) {
+	var livesgptoto = {
+		page : "getlive",
+		name : "Singapore TOTO",
+		ajax: ""
+	};
+	$.post(window.location.origin+"/togel.php", livesgptoto, function(data) {
 		var part = data.split(',');
 		$.each(part, function(key, value) {
-			$("#sgp #toto-"+key).text(value);
+			if (!value){
+				value = '<img src="'+window.location.origin+'/images/loading.gif" width="10" height="10" alt"" />';
+			}
+			$("#sgp #toto-"+key).html(value);
 		});
+		if($("#sgp #toto-10").text().length == 4){
+			$('#sgp #toto-10').addClass('todet');
+			$(".todet").click(todet);
+		}
+		else{
+			$('#sgp #toto-10').removeClass('todet');
+		}
 	})
 }
 function get_result(toto, rstpos){

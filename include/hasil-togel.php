@@ -11,6 +11,7 @@ $togel_region = strtoupper($uri_data[0])." ".$uri_data[1];
 			<th>KAMIS</th>
 			<th>SABTU</th>
 			<th>MINGGU</th>
+<<<<<<< HEAD
 		</tr>
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT']."/togel.php";
@@ -54,3 +55,8 @@ while ($a < $hasil_togel['count']) {
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT']."/include/togel-detail.php";
 ?>
+=======
+		</tr><?php include_once $_SERVER['DOCUMENT_ROOT']."/togel.php";$hasil_togel = $togel->get_hasil_togel($uri_data[0], $uri_data[1]);$row = $hasil_togel['data'];$a = 0; $nomor = '';while ($a < $hasil_togel['count']) {	echo "<tr>";	for($i=0; $i<5; $i++){		if($nomor != ''){			$a++;		}		switch ($i) {			case 0:				$nomor = (date( 'l', strtotime($row[$a]['tanggal']) ) == 'Monday') ? $row[$a]['nomor'] : '';				break;			case 1:				$nomor = (date( 'l', strtotime($row[$a]['tanggal']) ) == 'Wednesday') ? $row[$a]['nomor'] : '';				break;			case 2:				$nomor = (date( 'l', strtotime($row[$a]['tanggal']) ) == 'Thursday') ? $row[$a]['nomor'] : '';				break;			case 3:				$nomor = (date( 'l', strtotime($row[$a]['tanggal']) ) == 'Saturday') ? $row[$a]['nomor'] : '';				break;			case 4:				$nomor = (date( 'l', strtotime($row[$a]['tanggal']) ) == 'Sunday') ? $row[$a]['nomor'] : '';				break;		}		echo "<td align='center' style='border:0px;' width='20%'>".$nomor."</td>";	}	echo "</tr>";}?>
+	</tbody>
+</table>
+>>>>>>> tebak-skor

@@ -1,5 +1,5 @@
-<div style="margin: 0 auto;width: 1218px;">
-<a href="http://bandarsakong.net/?ref=9909022" target="_blank"><img alt="qq online" title="qq online" src="https://2.bp.blogspot.com/-T2hlSAv0IwU/WHssYTJLKSI/AAAAAAAACb4/XuSa5xYVULodTJDnRdrT4WyVNNYp7mT-gCLcB/s1600/bandarsakong980x90.gif" style="width: 403px; height: 50px;"></a>
-<a href="http://asiabandarkiu.com/?ref=91565999" target="_blank"><img alt="dominoqq" title="dominoqq" src="https://1.bp.blogspot.com/-rQPXICZRRjE/WFkWT3VTnJI/AAAAAAAACM4/mM9Xovm8sYc8httL6zHtC90Wx3gXBDl-wCLcB/s1600/bandarkiu980x90.gif" style="width: 403px; height: 50px;"></a>
-<a href="http://www.dominokiu.com/?ref=9156599" target="_blank"><img alt="bandarq" title="bandarq" src="https://2.bp.blogspot.com/-6OagHFgiezw/WHikFEd55oI/AAAAAAAACbE/VJbgBiSUZYE96obV7-SYQM_W-f-vnBwxACLcB/s1600/doyan980x90.gif" style="width: 403px; height: 50px;"></a>
+<div style="margin: 0 auto;width: 1218px;">
+<a href="http://bandarsakong.net/?ref=9909022" target="_blank"><img alt="qq online" title="qq online" src="https://2.bp.blogspot.com/-T2hlSAv0IwU/WHssYTJLKSI/AAAAAAAACb4/XuSa5xYVULodTJDnRdrT4WyVNNYp7mT-gCLcB/s1600/bandarsakong980x90.gif" style="width: 403px; height: 50px;"></a>
+<a href="http://asiabandarkiu.com/?ref=91565999" target="_blank"><img alt="dominoqq" title="dominoqq" src="https://1.bp.blogspot.com/-rQPXICZRRjE/WFkWT3VTnJI/AAAAAAAACM4/mM9Xovm8sYc8httL6zHtC90Wx3gXBDl-wCLcB/s1600/bandarkiu980x90.gif" style="width: 403px; height: 50px;"></a>
+<a href="http://www.dominokiu.com/?ref=9156599" target="_blank"><img alt="bandarq" title="bandarq" src="https://2.bp.blogspot.com/-6OagHFgiezw/WHikFEd55oI/AAAAAAAACbE/VJbgBiSUZYE96obV7-SYQM_W-f-vnBwxACLcB/s1600/doyan980x90.gif" style="width: 403px; height: 50px;"></a>
 </div>

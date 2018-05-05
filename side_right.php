@@ -76,7 +76,9 @@ else {
 ?>
 	<?php include "include/member-area.php"; ?>
     <?php include "include/togel-winner.php"; ?>
+	<?php include "include/tekor.php"; ?>
 	<?php include "include/converter.php"; ?>
+<<<<<<< HEAD
 	<?php // include "include/tekor.php"; ?>
 =======
 	include "include/member-area.php";
@@ -89,6 +91,8 @@ else {
 	<?php include "include/tekor.php"; ?>
 	<?php // include "include/converter.php"; ?>
 >>>>>>> toto-win
+=======
+>>>>>>> tebak-skor
 	<?php // include "include/parley.php"; ?>
 <?php }
 ?>

@@ -626,6 +626,7 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 .member_area {
 	width: 230px;
 }
+<<<<<<< HEAD
 .blink {
 	-webkit-animation: blink .75s linear infinite;
 	-moz-animation: blink .75s linear infinite;
@@ -662,4 +663,15 @@ div.countdown_tbl{font-size:18px;font-weight:700;}
 	50% { opacity: 1; }
 	50.01% { opacity: 0; }
 	100% { opacity: 0; }
+=======
+.tombol_red {
+	height: 33px;
+    background-color: #f11200;
+    color: white;
+    font-size: 17px;
+    border: 2px solid #f11200;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+>>>>>>> tebak-skor
 }

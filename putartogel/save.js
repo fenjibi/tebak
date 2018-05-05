@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <script>
 $("button").click(function(){
@@ -58,6 +59,11 @@ $('.num').keypress(function(e) {
 <script>
 $("button").click(function(){
 	var part, name;
+=======
+<script>
+$("button").click(function(){
+	var part;
+>>>>>>> tebak-skor
 	var save;
 	if($(this).attr('id') == "result4d"){
 		save = $("input[name='prize1']").val();
@@ -69,11 +75,17 @@ $("button").click(function(){
 	}
 	else if($(this).parents("table").attr('id') == "fourd"){
 		part = "fourd";
+<<<<<<< HEAD
 		name = "Singapore 4D";
 	}
 	else if($(this).parents("table").attr('id') == "toto"){
 		part = "toto";
 		name = "Singapore TOTO";
+=======
+	}
+	else if($(this).parents("table").attr('id') == "toto"){
+		part = "toto";
+>>>>>>> tebak-skor
 	}
 	if(part == "toto" || part == "fourd"){
 		save = "[";
@@ -82,6 +94,7 @@ $("button").click(function(){
 		});
 		save = save.slice(0,-1);
 		save += "]";
+<<<<<<< HEAD
 		
 		var livedata = {
 			page : "setlive",
@@ -92,6 +105,15 @@ $("button").click(function(){
 		};
 		$.post(window.location.origin + "/togel.php", livedata, function(rtn, status){
 			alert(status + ' : ' + save);
+=======
+		$.post(window.location.origin + "/putartogel/toto_post.php",
+		{
+			v : part,
+			val: save
+		},
+		function(data, status){
+			alert("Saved: " + save);
+>>>>>>> tebak-skor
 		});
 	}
 	else if(part == "result"){
@@ -115,5 +137,8 @@ $('.num').keypress(function(e) {
     if (!(a.indexOf(k)>=0))
         e.preventDefault();
 })
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> tebak-skor
 </script>

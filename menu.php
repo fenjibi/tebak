@@ -41,8 +41,10 @@ foreach ($page as $plist) {
 					<li><a href="<?php echo $home_url; ?>buku-mimpi">Buku Mimpi</a></li>
 				</ul>
             </li>
+			<li><a href="<?php echo $home_url; ?>tebak-skor">Tebak Skor</a></li>
 <?php
 $admpos = array(1, 2);
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
                     <li><a href="/hasil-togel/sgp-2017.php">Hasil Lengkap</a></li>
@@ -63,6 +65,8 @@ $admpos = array(1, 2);
 			<li><a href="<?php echo $home_url; ?>livescore">Live Score</a></li>
 <?php
 $admpos = array(1, 2);
+=======
+>>>>>>> tebak-skor
 $pageuser[4][1]['link'] = "#";
 $pageuser[4][1]['label'] = "Football";
 $pageuser[4][1][1]['link'] = "football-setup-adm";
@@ -75,18 +79,24 @@ $pageuser[5][1][1]['link'] = "football-match-adm";
 $pageuser[5][1][1]['label'] = "Match";
 $pageuser[5][1][2]['link'] = "admin-tebak-skor";
 $pageuser[5][1][2]['label'] = "Admin Tebak Skor";
+<<<<<<< HEAD
 >>>>>>> toto-win
+=======
+>>>>>>> tebak-skor
 if(in_array($get_user['position'], $admpos)){
 ?>
 			<li><a href="<?php echo $home_url; ?>user-list">Daftar User</a></li>
 <?php
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 ?>
             <li><a href="<?php echo $home_url; ?>syarat-kondisi">Lomba 4D</a></li>
             <li><a href="<?php echo $home_url; ?>about">About</a></li>
 			<!-- li><a href="#">Hadiah</a></li>
 =======
+=======
+>>>>>>> tebak-skor
 elseif(array_key_exists($get_user['position'], $pageuser)) {
 	foreach($pageuser[$get_user['position']] as $m){
 		echo "<li><a href=".$m['link'].">".$m['label']."</a>";

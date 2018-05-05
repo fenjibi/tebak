@@ -87,7 +87,11 @@ elseif($get_user['position'] == 5){
 		</thead>
 		<tbody>
 <?php 
+<<<<<<< HEAD
 $get_match = $football_match->get_match("", "past");
+=======
+$get_match = $football_match->get_match();
+>>>>>>> tebak-skor
 foreach($get_match as $match){
 	echo "<tr id='".$match['match_id']."'>
 		<td name='match_time'>".$match['time']."</td>

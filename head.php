@@ -17,8 +17,8 @@
 	<link href="<?php echo $home_url; ?>js/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="<?php echo $home_url; ?>js/jquery-3.1.1.js"></script>
 	<script type="text/javascript" src="<?php echo $home_url; ?>js/jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="<?php echo $home_url; ?>tools/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo $home_url; ?>js/common.js"></script>
-	<script type="text/javascript" src="<?php echo $home_url; ?>js/bootstrap.js"></script>
 	<script>
 	function getCookie(cname) {
 		var name = cname + "=";

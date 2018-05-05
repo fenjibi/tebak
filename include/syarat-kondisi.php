@@ -5,8 +5,8 @@
 	<p>&nbsp;</p>
 	<p><strong>SYARAT DAN KETENTUAN LOMBA 4D:</strong></p>
 	<ol style="margin: 17px;">
-		<li>Lomba ini di sponsori oleh DewaHoki, dan wajib memiliki account di DewaHoki dan apabila belum terdaftar silahkan daftar disini <a href="http://bit.ly/2hSDwiT">http://bit.ly/2hSDwiT</a> (DATA HARUS VALID).</li>
-		<li>Hadiah berupa chip atau credit dari website dewahoki.com</li>
+		<li>Lomba ini di sponsori oleh 899Cash, dan wajib memiliki account di 899Cash dan apabila belum terdaftar silahkan daftar disini <a href="http://899cash.net/?ref=dewa303" target="_blank">Bandar Togel</a> (DATA HARUS VALID).</li>
+		<li>Hadiah berupa chip atau credit dari website 899cash.net</li>
 		<li>Setiap 1 Account hanya boleh tebak 1x.</li>
 		<li>Jika di temukan data peserta tidak valid, maka hadiah tidak akan di berikan.</li>
 		<li>Pemenang bisa dilihat di menu pemenang.</li>

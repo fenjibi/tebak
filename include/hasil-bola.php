@@ -12,7 +12,11 @@ foreach($get_league as $league){
 ?>
 	</ul>
 <?php 
+<<<<<<< HEAD
 $get_match = $football_match->get_match("", "", " order by time desc");
+=======
+$get_match = $football_match->get_match("", "", " order by time asc");
+>>>>>>> tebak-skor
 $a = 0;
 $hari = array ('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu');
 foreach($get_league as $league){

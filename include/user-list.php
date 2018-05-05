@@ -8,7 +8,7 @@
 				<th>Username</th>
 				<th>Email</th>
 				<th>No Handphone</th>
-				<th>DewaHoki</th>
+				<th>899Cash</th>
 				<th>JayaBola</th>
 			</tr>
 		</thead>

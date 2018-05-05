@@ -78,8 +78,8 @@ class bet{
 		$periode_sql = "select * from bet 
 			where user_id=".$uid." and periode='".$periode."'";
 		$periode_chk = $this->mysqli->query($periode_sql);
-		if($periode_chk->num_rows > 4){
-			echo "Tebakan Anda untuk periode ini sudah ada.<br />Setiap user hanya boleh submit tebakan 5 x per periode.";
+		if($periode_chk->num_rows > 19){
+			echo "Tebakan Anda untuk periode ini sudah ada.<br />Setiap user hanya boleh submit tebakan 20 x per periode.";
 			return;
 		}
 		$sql = "INSERT INTO bet (user_id, number, periode) 
@@ -305,25 +305,41 @@ switch($_POST['page']){
 	case 'set_toto_winner':
 		$bet->set_toto_winner($_POST['bet_id']);
 		break;
+<<<<<<< HEAD
 	case 'betting_football':
+=======
+	case betting_football:
+>>>>>>> tebak-skor
 		$betfootball = $bet->betting_football($_POST['uid'], $_POST['match_id'], $_POST['home_score'], $_POST['away_score']);
 		if(isset($_POST['ajax'])){
 			echo $betfootball;
 		}
 		break;
+<<<<<<< HEAD
 	case 'get_tebakan_skor':
+=======
+	case get_tebakan_skor:
+>>>>>>> tebak-skor
 		$tekor = $bet->get_tebakan_skor($_POST['match_id'], $_POST['home_score'], $_POST['away_score'], $_POST['order_by'], $_POST['time_limit']);
 		if(isset($_POST['ajax'])){
 			echo json_encode($tekor);
 		}
 		break;
+<<<<<<< HEAD
 	case 'set_tekor_winner':
+=======
+	case set_tekor_winner:
+>>>>>>> tebak-skor
 		$tekor_win = $bet->set_tekor_winner($_POST['tekor_id']);
 		if(isset($_POST['ajax'])){
 			echo $tekor_win;
 		}
 		break;
+<<<<<<< HEAD
 	case 'tekor_winner_list':
+=======
+	case tekor_winner_list:
+>>>>>>> tebak-skor
 		$tekor_winlist = $bet->tekor_winner_list();
 		if(isset($_POST['ajax'])){
 			echo json_encode($tekor_winlist);
@@ -331,7 +347,11 @@ switch($_POST['page']){
 		break;
 }
 switch($_GET['page']){
+<<<<<<< HEAD
 	case 'download_data':
+=======
+	case download_data:
+>>>>>>> tebak-skor
 		$bet->download_data($_GET['filename']);
 		break;
 }

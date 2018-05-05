@@ -89,6 +89,7 @@ class togel {
 		}
 		$rst['data'] = $rst;
 		$rst['count'] = $get_rst->num_rows;
+<<<<<<< HEAD
 		$this->mysqli->close();
 		return $rst;
 	}
@@ -175,16 +176,24 @@ class togel {
 		$no_shio["tikus"] = ["tikus", "babi", "anjing", "ayam", "monyet", "kambing", "kuda", "ular", "naga", "kelinci", "harimau", "kerbau"];
 		$no_shio["babi"] = ["babi", "anjing", "ayam", "monyet", "kambing", "kuda", "ular", "naga", "kelinci", "harimau", "kerbau", "tikus"];
 		return $no_shio[$shio][$no12];
+=======
+		return $rst;
+		$this->mysqli->close();
+>>>>>>> tebak-skor
 	}
 }
 $togel = new togel();
 $togel->home_url = $home_url;
 switch($_POST['page']){
 	case "getlive":
+<<<<<<< HEAD
 		$getlive = $togel->getlive();
 		if(isset($_POST['ajax'])){
 			echo $getlive;
 		}
+=======
+		$togel->getlive();
+>>>>>>> tebak-skor
 		break;
 	case "save-result-sgp":
 		$togel->save_result_sgp();

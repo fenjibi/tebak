@@ -61,18 +61,34 @@ if(strstr($_GET['page'], '-', true) == 'hasil' || $_GET['page'] == 'shio' || $_G
 <table border="0" cellpadding="0" cellspacing="0" style="width: 250px;">
 	<tbody>
 		<tr>
+<<<<<<< HEAD
 			<td><a href="<?php echo $home_url; ?>hasil-macau45-2017">2017</a></td>
+=======
+			<td><a href="http://899bola.net/index.php?page=result_pools&pool=135" target="_blank">2017</a></td>
+>>>>>>> toto-win
 		</tr>
 	</tbody>
 </table>
 </div>
 <?php }
 else {
+<<<<<<< HEAD
 ?>
 	<?php include "include/member-area.php"; ?>
     <?php include "include/togel-winner.php"; ?>
 	<?php include "include/converter.php"; ?>
 	<?php // include "include/tekor.php"; ?>
+=======
+	include "include/member-area.php";
+	echo "<h3><a href='" . $home_url . "syarat-tebak-skor'>SYARAT TEBAK SKOR</a></h3>
+	<h3><a href='" . $home_url . "hasil-bola'>HASIL PERTANDINGAN</a></h3>
+    <h3><a href='" . $home_url . "prediksi-bola'>PREDIKSI BOLA</a></h3>
+    <h3><a href='" . $home_url . "tebak-skor-history'>HISTORI TEBAK SKOR</a></h3>";
+	?>
+    <?php include "include/togel-winner.php"; ?>
+	<?php include "include/tekor.php"; ?>
+	<?php // include "include/converter.php"; ?>
+>>>>>>> toto-win
 	<?php // include "include/parley.php"; ?>
 <?php }
 ?>

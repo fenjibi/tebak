@@ -1,5 +1,6 @@
 <?php
 	date_default_timezone_set('Asia/Jakarta');
+	include_once $_SERVER['DOCUMENT_ROOT']."/togel.php";
 	if($dd== ""){
                 $dd= "live2";
 		$weekdays = array("Wednesday", "Saturday", "Sunday");
@@ -19,12 +20,15 @@
 			}
 		}
 	}
+	$togel->__construct();
+	$sgp4d_date = $togel->get_shio(date("Y-m-d"));
+	$sgp4d_shio = $sgp4d_date['shio'];
 ?>
 <div id="sgp">
-<h3><span id="data-0">Singapore 4D</span><img src="<?=$home_url?>images/<?php echo $dd; ?>.gif" style="float: right;" /></h3>
+<h3><span id="data-0">SINGAPORE 4D</span><img src="<?=$home_url?>images/<?php echo $dd; ?>.gif" style="float: right;" /></h3>
 
 <div align="center" class="live_sgp">
-<table align="center" border="0" class="live_4d" style="width: 100%;padding: 0 0 16px 0px;">
+<table align="center" border="0" class="live_4d" style="width: 100%;/*padding: 0 0 16px 0px;*/">
 	<tbody>
 		<tr>
 			<td style="border-radius: 2px;" bgcolor="#2f3d41">
@@ -41,7 +45,7 @@
 				<tbody>
 					<tr>
 						<td class="result_prize">1<sup>st</sup>&nbsp; &nbsp;Prize</td>
-						<td class="resulttop1" id="prize_1"><span id="data-3"></span></td>
+						<td class="resulttop1" id="prize_1"><span id="data-3" animal="<?php echo $sgp4d_shio; ?>"></span></td>
 					</tr>
 					<tr>
 						<td class="result_prize">2<sup>nd</sup>&nbsp; &nbsp;Prize</td>
@@ -111,5 +115,12 @@
 		</tr>
 	</tbody>
 </table>
+<div class="menu_4d">
+    <span style="background: #00293f;"><a href="<?php echo $home_url; ?>mobile/" target="_blank">View Mobile</a></span>
+    <span><a href="<?php echo $home_url; ?>hasil-togel/sgp/2018">Hasil SGP</a></span>
 </div>
 </div>
+</div>
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT']."/include/togel-detail.php";
+?>

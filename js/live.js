@@ -31,16 +31,12 @@ function populate(){
 			get_result(toto, rstpos);
 		}
 	})
-<<<<<<< HEAD
-	$.ajax(window.location.origin+"/data/sgp_4d.php").done(function(data) {
-=======
 	var livesgp4d = {
 		page : "getlive",
 		name : "Singapore 4D",
 		ajax: ""
 	};
 	$.post(window.location.origin+"/togel.php", livesgp4d, function(data) {
->>>>>>> toto-win
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			if (!value){
@@ -56,16 +52,12 @@ function populate(){
 			$('#sgp #data-3').removeClass('todet');
 		}
 	})
-<<<<<<< HEAD
-	$.ajax(window.location.origin+"/data/sgp_toto.php").done(function(data) {
-=======
 	var livesgptoto = {
 		page : "getlive",
 		name : "Singapore TOTO",
 		ajax: ""
 	};
 	$.post(window.location.origin+"/togel.php", livesgptoto, function(data) {
->>>>>>> toto-win
 		var part = data.split(',');
 		$.each(part, function(key, value) {
 			if (!value){

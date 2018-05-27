@@ -20,9 +20,10 @@
 			}
 		}
 	}
-	$togel->__construct();
 	$sgp4d_date = $togel->get_shio(date("Y-m-d"));
 	$sgp4d_shio = $sgp4d_date['shio'];
+	$urlref = array("");
+	if(in_array(parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST), $urlref)){
 ?>
 <div id="sgp">
 <h3><span id="data-0">SINGAPORE 4D</span><img src="<?=$home_url?>images/<?php echo $dd; ?>.gif" style="float: right;" /></h3>
@@ -122,5 +123,6 @@
 </div>
 </div>
 <?php 
-include_once $_SERVER['DOCUMENT_ROOT']."/include/togel-detail.php";
+	include_once $_SERVER['DOCUMENT_ROOT']."/include/togel-detail.php";
+	}
 ?>
